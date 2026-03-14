@@ -1,4 +1,39 @@
+import { useEffect, useRef, useState } from "react";
+
 export default function Main() {
+    const rotatingWords = ["Infrastructure.", "Cloud.", "Backends.", "Scalability."];
+    const [wordIndex, setWordIndex] = useState(0);
+    const [outgoingWord, setOutgoingWord] = useState<string | null>(null);
+    const [transitionId, setTransitionId] = useState(0);
+    const clearOutgoingTimeoutRef = useRef<number | null>(null);
+
+    useEffect(() => {
+        const intervalId = window.setInterval(() => {
+            setWordIndex((prev) => {
+                const next = (prev + 1) % rotatingWords.length;
+                setOutgoingWord(rotatingWords[prev]);
+                setTransitionId((id) => id + 1);
+
+                if (clearOutgoingTimeoutRef.current !== null) {
+                    window.clearTimeout(clearOutgoingTimeoutRef.current);
+                }
+
+                clearOutgoingTimeoutRef.current = window.setTimeout(() => {
+                    setOutgoingWord(null);
+                }, 620);
+
+                return next;
+            });
+        }, 2800);
+
+        return () => {
+            window.clearInterval(intervalId);
+            if (clearOutgoingTimeoutRef.current !== null) {
+                window.clearTimeout(clearOutgoingTimeoutRef.current);
+            }
+        };
+    }, [rotatingWords.length]);
+
     return (
         <section
             className="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden"
@@ -16,8 +51,18 @@ export default function Main() {
                         </h2>
                         <h1 className="text-5xl md:text-8xl font-black text-white mb-6 tracking-tight leading-tight">
                             Java Fullstack <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-500 to-indigo-600">
-                                Infrastructure.
+                            <span className="hero-rotating-word-slot align-bottom">
+                                {outgoingWord ? (
+                                    <span className="hero-word-out text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-500 to-indigo-600">
+                                        {outgoingWord}
+                                    </span>
+                                ) : null}
+                                <span
+                                    key={`in-${transitionId}-${rotatingWords[wordIndex]}`}
+                                    className="hero-word-in text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-500 to-indigo-600"
+                                >
+                                    {rotatingWords[wordIndex]}
+                                </span>
                             </span>
                         </h1>
                         <p className="max-w-2xl text-gray-400 text-lg md:text-xl mb-10 leading-relaxed mx-auto lg:mx-0">
