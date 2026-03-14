@@ -67,4 +67,24 @@
   .name-title-bracket-right {
     animation: name-title-boing-right 540ms cubic-bezier(0.22, 1, 0.36, 1);
   }
+
+  .hero-rotating-word-slot {
+    position: relative;
+    display: inline-flex;
+    height: 1.15em;
+    overflow: hidden;
+    align-items: flex-start;
+  }
+
+  .hero-word-in {
+    display: inline-block;
+    animation: hero-word-enter 620ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .hero-word-out {
+    position: absolute;
+    left: 0;
+    top: 0;
+    animation: hero-word-exit 620ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
 }
