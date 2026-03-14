@@ -49,6 +49,10 @@
     min-height: 100%;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-bg-950 text-text-100 antialiased;
     font-family: var(--font-sans);
