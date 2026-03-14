@@ -1,3 +1,4 @@
+import About from "./components/About/About"
 import Header from "./components/Header/Header"
 import Main from "./components/Main/Main"
 import MouseGlow from "./components/MouseGlow"
@@ -9,6 +10,7 @@ function App() {
         <MouseGlow />
         <Header />
         <Main />
+        <About />
     </div>
   )
 }
