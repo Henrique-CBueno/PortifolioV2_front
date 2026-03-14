@@ -1,5 +1,6 @@
 import About from "./components/About/About"
 import Header from "./components/Header/Header"
+import Journey from "./components/Journey/Journey"
 import Main from "./components/Main/Main"
 import MouseGlow from "./components/MouseGlow"
 
@@ -11,6 +12,7 @@ function App() {
         <Header />
         <Main />
         <About />
+        <Journey />
     </div>
   )
 }
