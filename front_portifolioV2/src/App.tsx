@@ -3,6 +3,7 @@ import Header from "./components/Header/Header"
 import Journey from "./components/Journey/Journey"
 import Main from "./components/Main/Main"
 import MouseGlow from "./components/MouseGlow"
+import Stacks from "./components/Stacks/Stacks"
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
         <Main />
         <About />
         <Journey />
+        <Stacks />
     </div>
   )
 }
