@@ -1,4 +1,4 @@
-#Portifolio V2
+## Portifolio V2
 
 Portifolio pessoal desenvolvido com React, TypeScript, Vite e Tailwind CSS v4.
 
