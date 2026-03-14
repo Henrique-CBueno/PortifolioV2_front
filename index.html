@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Portfolio | Java &amp; AWS Fullstack Developer</title>
+    <!-- BEGIN: External Scripts -->
+    <!-- Tailwind CSS v3 with Forms and Container-Queries -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Font Awesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <!-- END: External Scripts -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0a0a0c',
+                            accent: '#3b82f6',
+                            surface: '#16161a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style data-purpose="custom-cursor-styles">
+        body {
+            cursor: default;
+            background-color: #0a0a0c;
+        }
+
+        #custom-cursor {
+            width: 20px;
+            height: 20px;
+            background-color: #3b82f6;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: screen;
+            filter: blur(8px);
+            transition: transform 0.1s ease-out;
+            opacity: 0.6;
+        }
+
+        ::selection {
+            background: #3b82f6;
+            color: white;
+        }
+    </style>
+    <style data-purpose="layout-animations">
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-5px);
+            border-color: #3b82f6;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .bg-grid-pattern {
+            background-image: linear-gradient(to right, rgba(59, 130, 246, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        /* Expandable Containers Transition */
+        .expandable-container {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease-in-out;
+        }
+
+        .expandable-container.show {
+            max-height: 2000px;
+            /* Large enough to fit content */
+            opacity: 1;
+            margin-top: 1.5rem;
+        }
+    </style>
+</head>
+
+<body class="text-gray-300 font-sans selection:bg-blue-500 selection:text-white overflow-x-hidden">
+    <!-- BEGIN: Custom Cursor Follower -->
+    <div data-purpose="mouse-glow" id="custom-cursor"></div>
+    <!-- END: Custom Cursor Follower -->
+    <!-- BEGIN: Header Navigation -->
+    <header class="fixed top-0 w-full z-50 bg-brand-dark/80 backdrop-blur-md border-b border-white/10"
+        data-purpose="main-navigation">
+        <nav class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="text-2xl font-bold text-white tracking-tighter">
+                <span class="text-brand-accent">DEV</span>ELOPER
+            </div>
+            <div class="hidden md:flex space-x-8 font-medium">
+                <a class="hover:text-brand-accent transition-colors" href="#home">Home</a>
+                <a class="hover:text-brand-accent transition-colors" href="#about">About</a>
+                <a class="hover:text-brand-accent transition-colors" href="#journey">Journey</a>
+                <a class="hover:text-brand-accent transition-colors" href="#stack">Stack</a>
+                <a class="hover:text-brand-accent transition-colors" href="#projects">Projects</a>
+                <a class="px-5 py-2 bg-brand-accent text-white rounded-full hover:bg-blue-600 transition-all"
+                    href="#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+    <!-- END: Header Navigation -->
+    <main>
+        <!-- BEGIN: Hero Section -->
+        <section class="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden"
+            data-purpose="hero-banner" id="home">
+            <div
+                class="absolute inset-0 bg-grid-pattern -z-10 [mask-image:radial-gradient(ellipse_at_center,black_70%,transparent_100%)]">
+            </div>
+            <div
+                class="absolute top-1/2 left-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-brand-accent/20 rounded-full blur-[160px] -z-20 animate-pulse">
+            </div>
+            <div class="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-blue-900/10 rounded-full blur-[120px] -z-20">
+            </div>
+            <div class="container mx-auto px-6 relative">
+                <div class="flex flex-col lg:flex-row items-center gap-12 text-center lg:text-left">
+                    <div class="lg:w-2/3 animate-fade-in">
+                        <h2 class="text-brand-accent font-mono mb-4 text-lg tracking-widest uppercase">System Architect
+                            &amp; Cloud Expert</h2>
+                        <h1 class="text-5xl md:text-8xl font-black text-white mb-6 tracking-tight leading-tight">
+                            Java Fullstack <br /><span
+                                class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-500 to-indigo-600">Infrastructure.</span>
+                        </h1>
+                        <p class="max-w-2xl text-gray-400 text-lg md:text-xl mb-10 leading-relaxed mx-auto lg:mx-0">
+                            Designing resilient distributed systems and scalable enterprise backends with Java, Spring
+                            Boot, and AWS. Bridging the gap between complex logic and cloud performance.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                            <a class="px-8 py-4 bg-brand-accent text-white font-bold rounded-lg hover:shadow-lg hover:shadow-blue-500/30 transition-all flex items-center justify-center gap-2 group"
+                                href="#projects">
+                                View Case Studies <i
+                                    class="fa-solid fa-chevron-right text-sm group-hover:translate-x-1 transition-transform"></i>
+                            </a>
+                            <a class="px-8 py-4 border border-white/20 text-white font-bold rounded-lg hover:bg-white/5 transition-all flex items-center justify-center gap-2"
+                                href="#contact">
+                                Initiate Project
+                            </a>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/3 hidden lg:block relative group">
+                        <div
+                            class="relative z-10 p-6 bg-brand-surface border border-white/10 rounded-2xl shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500">
+                            <div class="flex items-center gap-2 mb-4 border-b border-white/5 pb-2">
+                                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                                <span class="ml-2 text-xs font-mono text-gray-500">CloudArchitecture.java</span>
+                            </div>
+                            <pre class="text-xs font-mono text-blue-400 leading-relaxed"><span class="text-purple-400">@Service</span>
+<span class="text-white">public class</span> Deployment {
+  <span class="text-gray-500">// AWS Infrastructure</span>
+  <span class="text-purple-400">@Autowired</span>
+  private CloudService aws;
+
+  <span class="text-white">public void</span> deploy() {
+    aws.scale(<span class="text-orange-400">"us-east-1"</span>);
+    <span class="text-gray-500">// 99.9% uptime</span>
+  }
+}
+            </pre>
+                        </div>
+                        <div
+                            class="absolute -top-10 -right-10 p-6 bg-blue-900/20 backdrop-blur-xl border border-blue-500/20 rounded-2xl shadow-2xl transform -rotate-6 hover:rotate-0 transition-transform duration-500 -z-10">
+                            <i class="fa-brands fa-aws text-6xl text-orange-400 opacity-50"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END: Hero Section -->
+        <!-- BEGIN: About Section -->
+        <section class="py-24 bg-brand-surface" data-purpose="about-me-details" id="about">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="relative">
+                        <div class="aspect-square bg-gray-800 rounded-2xl overflow-hidden border border-white/10 group">
+                            <img alt="Developer Portrait"
+                                class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUKOgf7RjSl5lg795Q_1Ci3rPOvQ0vRDkNSdsKPaTk3ohEqMtBVv0Pb6TeRDe4OTIsNq3Q2knYXEF1qlQPlKy5UP0MAljixlNfBZ5_RWaQMxRDOstZG7qyrJDqHYpfSgMYzin9N2FbOCkegxaoxkjde6MSMVh0dS_OzuKoSRqCEHZj914XzKR3QAy7-rk-jYmJmfltELJ7upmAaDDgMBAemJK_lzHe7nH7jvO9vkx6ZvjjEZVl1Fgvr6USj0cPyw8uD8dciS7gKoE" />
+                        </div>
+                        <div
+                            class="absolute -bottom-6 -right-6 w-32 h-32 border-2 border-brand-accent -z-10 rounded-xl">
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-3xl font-bold text-white mb-6">Building the backend of tomorrow.</h3>
+                        <p class="text-gray-400 leading-relaxed mb-6">
+                            I am a software engineer with over 5 years of experience in developing distributed systems
+                            and cloud-native applications. My passion lies in solving complex architectural challenges
+                            and optimizing performance in high-traffic environments.
+                        </p>
+                        <p class="text-gray-400 leading-relaxed mb-8">
+                            Based in the cloud, I leverage AWS services to ensure high availability and scalability for
+                            every project I touch, from initial concept to production deployment.
+                        </p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="p-4 rounded-lg bg-brand-dark border border-white/5">
+                                <span class="block text-brand-accent font-bold text-2xl">5+</span>
+                                <span class="text-sm text-gray-500">Years Exp.</span>
+                            </div>
+                            <div class="p-4 rounded-lg bg-brand-dark border border-white/5">
+                                <span class="block text-brand-accent font-bold text-2xl">20+</span>
+                                <span class="text-sm text-gray-500">Projects Done</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END: About Section -->
+        <!-- BEGIN: Professional Journey Section -->
+        <section class="py-24" data-purpose="career-milestones" id="journey">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Professional Journey</h2>
+                    <div class="h-1.5 w-20 bg-brand-accent mx-auto rounded-full"></div>
+                </div>
+                <div class="relative">
+                    <div class="absolute left-1/2 -translate-x-1/2 h-full w-px bg-white/10 hidden md:block"></div>
+                    <div class="space-y-16">
+                        <div class="flex flex-col md:flex-row items-center gap-8 md:gap-0 relative">
+                            <div class="md:w-1/2 md:pr-12 text-center md:text-right">
+                                <span
+                                    class="inline-block px-3 py-1 bg-brand-accent/20 text-brand-accent text-xs font-bold rounded-full mb-2">2021
+                                    - Present</span>
+                                <h4 class="text-xl font-bold text-white">Senior Cloud Architect</h4>
+                                <p class="text-brand-accent font-medium mb-2">Tech Solutions Inc.</p>
+                                <p class="text-sm text-gray-400 leading-relaxed">Leading the migration of legacy
+                                    monolithic architectures to AWS microservices using Spring Boot and Kubernetes.
+                                    Reduced operational costs by 35%.</p>
+                            </div>
+                            <div
+                                class="absolute left-1/2 -translate-x-1/2 w-4 h-4 bg-brand-accent rounded-full border-4 border-brand-dark z-10 hidden md:block shadow-[0_0_15px_rgba(59,130,246,0.6)]">
+                            </div>
+                            <div class="md:w-1/2 md:pl-12"></div>
+                        </div>
+                        <div class="flex flex-col md:flex-row items-center gap-8 md:gap-0 relative">
+                            <div class="md:w-1/2 md:pr-12"></div>
+                            <div
+                                class="absolute left-1/2 -translate-x-1/2 w-4 h-4 bg-gray-600 rounded-full border-4 border-brand-dark z-10 hidden md:block">
+                            </div>
+                            <div class="md:w-1/2 md:pl-12 text-center md:text-left">
+                                <span
+                                    class="inline-block px-3 py-1 bg-white/5 text-gray-400 text-xs font-bold rounded-full mb-2">2019
+                                    - 2021</span>
+                                <h4 class="text-xl font-bold text-white">Fullstack Developer</h4>
+                                <p class="text-brand-accent font-medium mb-2">Fintech Innovators</p>
+                                <p class="text-sm text-gray-400 leading-relaxed">Developed real-time payment processing
+                                    gateways with Java 11. Implemented responsive React frontends integrated with
+                                    RESTful APIs.</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-col md:flex-row items-center gap-8 md:gap-0 relative">
+                            <div class="md:w-1/2 md:pr-12 text-center md:text-right">
+                                <span
+                                    class="inline-block px-3 py-1 bg-white/5 text-gray-400 text-xs font-bold rounded-full mb-2">2017
+                                    - 2019</span>
+                                <h4 class="text-xl font-bold text-white">Junior Backend Engineer</h4>
+                                <p class="text-brand-accent font-medium mb-2">CodeBase Labs</p>
+                                <p class="text-sm text-gray-400 leading-relaxed">Assisted in building scalable database
+                                    schemas using PostgreSQL and optimized JVM performance for high-traffic data
+                                    ingestion services.</p>
+                            </div>
+                            <div
+                                class="absolute left-1/2 -translate-x-1/2 w-4 h-4 bg-gray-600 rounded-full border-4 border-brand-dark z-10 hidden md:block">
+                            </div>
+                            <div class="md:w-1/2 md:pl-12"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END: Professional Journey Section -->
+        <!-- BEGIN: Tech Stack Section -->
+        <section class="py-24 bg-brand-surface" data-purpose="technology-stack" id="stack">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Core Technology Stack</h2>
+                    <div class="h-1.5 w-20 bg-brand-accent mx-auto rounded-full"></div>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                    <!-- Java Card -->
+                    <div
+                        class="tech-card p-8 bg-brand-dark rounded-2xl border border-white/5 text-center transition-all duration-300">
+                        <i class="fa-brands fa-java text-5xl text-brand-accent mb-4"></i>
+                        <h4 class="text-white font-bold">Java</h4>
+                        <p class="text-xs text-gray-500 mt-2">Enterprise Logic</p>
+                    </div>
+                    <!-- AWS Card -->
+                    <div
+                        class="tech-card p-8 bg-brand-dark rounded-2xl border border-white/5 text-center transition-all duration-300">
+                        <i class="fa-brands fa-aws text-5xl text-orange-400 mb-4"></i>
+                        <h4 class="text-white font-bold">AWS</h4>
+                        <p class="text-xs text-gray-500 mt-2">Cloud Infrastructure</p>
+                    </div>
+                    <!-- Spring Boot -->
+                    <div
+                        class="tech-card p-8 bg-brand-dark rounded-2xl border border-white/5 text-center transition-all duration-300">
+                        <i class="fa-solid fa-leaf text-5xl text-green-500 mb-4"></i>
+                        <h4 class="text-white font-bold">Spring Boot</h4>
+                        <p class="text-xs text-gray-500 mt-2">Microservices</p>
+                    </div>
+                    <!-- Docker -->
+                    <div
+                        class="tech-card p-8 bg-brand-dark rounded-2xl border border-white/5 text-center transition-all duration-300">
+                        <i class="fa-brands fa-docker text-5xl text-blue-400 mb-4"></i>
+                        <h4 class="text-white font-bold">Docker</h4>
+                        <p class="text-xs text-gray-500 mt-2">Containerization</p>
+                    </div>
+                    <!-- React -->
+                    <div
+                        class="tech-card p-8 bg-brand-dark rounded-2xl border border-white/5 text-center transition-all duration-300">
+                        <i class="fa-brands fa-react text-5xl text-cyan-400 mb-4"></i>
+                        <h4 class="text-white font-bold">React</h4>
+                        <p class="text-xs text-gray-500 mt-2">Modern Frontend</p>
+                    </div>
+                </div>
+                <!-- Hidden Extra Tech Row -->
+                <div class="expandable-container" id="more-tech">
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                        <div
+                            class="tech-card p-8 bg-brand-dark rounded-2xl border border-white/5 text-center transition-all duration-300">
+                            <i class="fa-solid fa-database text-5xl text-blue-500 mb-4"></i>
+                            <h4 class="text-white font-bold">PostgreSQL</h4>
+                            <p class="text-xs text-gray-500 mt-2">Relational DB</p>
+                        </div>
+                        <div
+                            class="tech-card p-8 bg-brand-dark rounded-2xl border border-white/5 text-center transition-all duration-300">
+                            <i class="fa-solid fa-bolt text-5xl text-red-500 mb-4"></i>
+                            <h4 class="text-white font-bold">Redis</h4>
+                            <p class="text-xs text-gray-500 mt-2">Caching Layer</p>
+                        </div>
+                        <div
+                            class="tech-card p-8 bg-brand-dark rounded-2xl border border-white/5 text-center transition-all duration-300">
+                            <i class="fa-solid fa-dharmachakra text-5xl text-blue-600 mb-4"></i>
+                            <h4 class="text-white font-bold">Kubernetes</h4>
+                            <p class="text-xs text-gray-500 mt-2">Orchestration</p>
+                        </div>
+                        <div
+                            class="tech-card p-8 bg-brand-dark rounded-2xl border border-white/5 text-center transition-all duration-300">
+                            <i class="fa-brands fa-github-alt text-5xl text-white mb-4"></i>
+                            <h4 class="text-white font-bold">Jenkins</h4>
+                            <p class="text-xs text-gray-500 mt-2">Automation CI/CD</p>
+                        </div>
+                        <div
+                            class="tech-card p-8 bg-brand-dark rounded-2xl border border-white/5 text-center transition-all duration-300">
+                            <i class="fa-solid fa-layer-group text-5xl text-purple-500 mb-4"></i>
+                            <h4 class="text-white font-bold">Terraform</h4>
+                            <p class="text-xs text-gray-500 mt-2">IaC Management</p>
+                        </div>
+                        <div
+                            class="tech-card p-8 bg-brand-dark rounded-2xl border border-white/5 text-center transition-all duration-300">
+                            <i class="fa-solid fa-server text-5xl text-orange-600 mb-4"></i>
+                            <h4 class="text-white font-bold">Hibernate</h4>
+                            <p class="text-xs text-gray-500 mt-2">ORM Framework</p>
+                        </div>
+                        <div
+                            class="tech-card p-8 bg-brand-dark rounded-2xl border border-white/5 text-center transition-all duration-300">
+                            <i class="fa-solid fa-terminal text-5xl text-gray-400 mb-4"></i>
+                            <h4 class="text-white font-bold">SQL</h4>
+                            <p class="text-xs text-gray-500 mt-2">Data Querying</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-12 text-center">
+                    <button
+                        class="px-8 py-3 bg-brand-dark border border-white/10 text-white font-medium rounded-full hover:border-brand-accent transition-all group"
+                        id="btn-ver-mais" onclick="toggleMoreTech()">
+                        Ver mais <i
+                            class="fa-solid fa-chevron-down ml-2 text-xs group-hover:translate-y-1 transition-transform"
+                            id="ver-mais-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+        <!-- END: Tech Stack Section -->
+        <!-- BEGIN: Projects Section -->
+        <section class="py-24" data-purpose="portfolio-projects" id="projects">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-2">Selected Works</h2>
+                        <p class="text-gray-400">A collection of cloud-native enterprise solutions.</p>
+                    </div>
+                    <a class="text-brand-accent border-b border-brand-accent pb-1 font-medium hover:text-white hover:border-white transition-all"
+                        href="#">View All Github</a>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Project 1 -->
+                    <div
+                        class="group bg-brand-dark border border-white/5 rounded-3xl overflow-hidden hover:border-brand-accent/50 transition-all">
+                        <div class="relative overflow-hidden aspect-video">
+                            <img alt="Project 1"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8Dud-Q5vv6DW_a8NdIasLu1t-wJ13v__sjdRy7y1kK3yEohnfpt7zL8aFG0ZLXK2YzY2QwFFZJwCkULbffQG4qknAz7QO4e9SISOfbVAQFl_T9NsE_GynHkrsQzS57dDSgFb4qYKkTMBvyeT-4V6GLkxfdDUtw41NOsqZwN7Tk5scl1CjhXyX_gXqHjz3gPbxR9Di8q_e_Gd-qVbj2ouLp3DucSqWXL8J7EyZYEdrPN3Kc64KKtUq0PwSlARbjrEASszmV061Hq8" />
+                        </div>
+                        <div class="p-8">
+                            <div class="flex gap-2 mb-4">
+                                <span
+                                    class="text-[10px] uppercase tracking-widest bg-brand-accent/10 text-brand-accent px-2 py-1 rounded">Java</span>
+                                <span
+                                    class="text-[10px] uppercase tracking-widest bg-brand-accent/10 text-brand-accent px-2 py-1 rounded">AWS
+                                    Lambda</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-3">Serverless E-Commerce API</h3>
+                            <p class="text-gray-400 mb-6">A high-performance backend processing millions of transactions
+                                daily using AWS Lambda and DynamoDB.</p>
+                            <a class="inline-flex items-center gap-2 text-white font-medium hover:gap-4 transition-all"
+                                href="#">
+                                Case Study <i class="fa-solid fa-arrow-right text-brand-accent"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Project 2 -->
+                    <div
+                        class="group bg-brand-dark border border-white/5 rounded-3xl overflow-hidden hover:border-brand-accent/50 transition-all">
+                        <div class="relative overflow-hidden aspect-video">
+                            <img alt="Project 2"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9_r_nwDRSDiFIILb4YDvFBy0WmiOO1CcufpfjIklB6oewR9S17e0NyofEZa0wduE8mms_WvkUuWE23beBXct0ICA9C9VIKpx3NlPv3a-quK4Nd7IYx_EVrxfktxb_-BnW7nhTDKb42ENgDzRBJEz6QKq7ZyvHF9K3feJ57H2S8e1DfnxPfHjM7VoYiSJ6M1s8fqhCNZ4mCf9UfndWtTvO6LxFO-9v-qJ83Fjv6PQZv1DmkGNUI3-AsoeeWy0QoKPV2r_5uxcApKM" />
+                        </div>
+                        <div class="p-8">
+                            <div class="flex gap-2 mb-4">
+                                <span
+                                    class="text-[10px] uppercase tracking-widest bg-brand-accent/10 text-brand-accent px-2 py-1 rounded">Spring
+                                    Boot</span>
+                                <span
+                                    class="text-[10px] uppercase tracking-widest bg-brand-accent/10 text-brand-accent px-2 py-1 rounded">Docker</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-3">Real-time Data Pipeline</h3>
+                            <p class="text-gray-400 mb-6">Real-time data visualization tool for monitoring Kubernetes
+                                cluster health and resource allocation.</p>
+                            <a class="inline-flex items-center gap-2 text-white font-medium hover:gap-4 transition-all"
+                                href="#">
+                                Case Study <i class="fa-solid fa-arrow-right text-brand-accent"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Hidden Extra Projects Row -->
+                <div class="expandable-container" id="more-projects">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <!-- Project 3 -->
+                        <div
+                            class="group bg-brand-dark border border-white/5 rounded-3xl overflow-hidden hover:border-brand-accent/50 transition-all">
+                            <div class="relative overflow-hidden aspect-video">
+                                <img alt="Project 3"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAn-K3qV_8Q5J0K8_H8X-l5V5zX8O5TzQ7B8I0Y5L9P-M9N9K8J7I6H5G4F3E2D1C0B9A8-X-Z-Y-W-V-U-T-S-R-Q-P-O-N-M-L-K-J-I-H-G-F-E-D-C-B-A" />
+                            </div>
+                            <div class="p-8">
+                                <div class="flex gap-2 mb-4">
+                                    <span
+                                        class="text-[10px] uppercase tracking-widest bg-brand-accent/10 text-brand-accent px-2 py-1 rounded">AWS
+                                        Glue</span>
+                                    <span
+                                        class="text-[10px] uppercase tracking-widest bg-brand-accent/10 text-brand-accent px-2 py-1 rounded">React</span>
+                                </div>
+                                <h3 class="text-2xl font-bold text-white mb-3">Cloud-Native Analytics Dashboard</h3>
+                                <p class="text-gray-400 mb-6">A comprehensive analytics engine processing large datasets
+                                    via AWS Glue with a dynamic React dashboard.</p>
+                                <a class="inline-flex items-center gap-2 text-white font-medium hover:gap-4 transition-all"
+                                    href="#">
+                                    Case Study <i class="fa-solid fa-arrow-right text-brand-accent"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Project 4 -->
+                        <div
+                            class="group bg-brand-dark border border-white/5 rounded-3xl overflow-hidden hover:border-brand-accent/50 transition-all">
+                            <div class="relative overflow-hidden aspect-video">
+                                <img alt="Project 4"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7-H9G8F7E6D5C4B3A2Z1Y0X9W8V7U6T5S4R3Q2P1O0N9M8L7K6J5I4H3G2F1E0D9C8B7A6-X-Z-Y-W-V-U-T-S-R-Q-P-O-N-M-L-K-J-I-H-G-F-E-D-C-B-A" />
+                            </div>
+                            <div class="p-8">
+                                <div class="flex gap-2 mb-4">
+                                    <span
+                                        class="text-[10px] uppercase tracking-widest bg-brand-accent/10 text-brand-accent px-2 py-1 rounded">GitHub
+                                        Actions</span>
+                                    <span
+                                        class="text-[10px] uppercase tracking-widest bg-brand-accent/10 text-brand-accent px-2 py-1 rounded">Terraform</span>
+                                </div>
+                                <h3 class="text-2xl font-bold text-white mb-3">Automated CI/CD Pipeline</h3>
+                                <p class="text-gray-400 mb-6">Standardized DevOps infrastructure across 15+
+                                    microservices, reducing deployment time by 60%.</p>
+                                <a class="inline-flex items-center gap-2 text-white font-medium hover:gap-4 transition-all"
+                                    href="#">
+                                    Case Study <i class="fa-solid fa-arrow-right text-brand-accent"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-12 text-center">
+                    <button
+                        class="px-8 py-3 bg-brand-dark border border-white/10 text-white font-medium rounded-full hover:border-brand-accent transition-all group"
+                        id="btn-ver-mais-projetos" onclick="toggleMoreProjects()">
+                        Ver mais projetos <i
+                            class="fa-solid fa-chevron-down ml-2 text-xs group-hover:translate-y-1 transition-transform"
+                            id="ver-mais-projetos-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+        <!-- END: Projects Section -->
+        <!-- BEGIN: Contact Section -->
+        <section class="py-24 bg-brand-surface" data-purpose="contact-form-section" id="contact">
+            <div
+                class="max-w-4xl mx-auto px-6 bg-brand-dark border border-white/10 rounded-3xl p-8 md:p-16 text-center">
+                <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Start a project.</h2>
+                <p class="text-gray-400 mb-10 text-lg">Interested in working together? Let's discuss your next
+                    cloud-native architecture or Java backend project.</p>
+                <form class="space-y-6 text-left">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium text-gray-400 ml-1">Your Name</label>
+                            <input
+                                class="w-full bg-brand-surface border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-accent/50 text-white transition-all"
+                                placeholder="John Doe" type="text" />
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium text-gray-400 ml-1">Email Address</label>
+                            <input
+                                class="w-full bg-brand-surface border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-accent/50 text-white transition-all"
+                                placeholder="john@example.com" type="email" />
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium text-gray-400 ml-1">Project Details</label>
+                        <textarea
+                            class="w-full bg-brand-surface border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-accent/50 text-white transition-all"
+                            placeholder="Tell me about your project..." rows="4"></textarea>
+                    </div>
+                    <button
+                        class="w-full py-4 bg-brand-accent text-white font-bold rounded-xl hover:bg-blue-600 transition-all transform active:scale-[0.98]"
+                        type="submit">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </section>
+        <!-- END: Contact Section -->
+    </main>
+    <!-- BEGIN: Footer -->
+    <footer class="py-12 border-t border-white/5 text-center text-gray-500 text-sm" data-purpose="site-footer">
+        <div class="flex justify-center space-x-6 mb-6">
+            <a class="hover:text-white transition-colors" href="#"><i class="fa-brands fa-github text-xl"></i></a>
+            <a class="hover:text-white transition-colors" href="#"><i class="fa-brands fa-linkedin text-xl"></i></a>
+            <a class="hover:text-white transition-colors" href="#"><i class="fa-brands fa-twitter text-xl"></i></a>
+        </div>
+        <p>© 2023 JavaFullstackPortfolio. All rights reserved.</p>
+    </footer>
+    <!-- END: Footer -->
+    <script data-purpose="cursor-interaction-script">
+        const cursor = document.getElementById('custom-cursor');
+        let mouseX = 0;
+        let mouseY = 0;
+        let cursorX = 0;
+        let cursorY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animate() {
+            let dx = mouseX - cursorX;
+            let dy = mouseY - cursorY;
+
+            cursorX += dx * 0.15;
+            cursorY += dy * 0.15;
+
+            cursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
+
+            requestAnimationFrame(animate);
+        }
+
+        function setupCursorListeners() {
+            const interactiveElements = document.querySelectorAll('a, button, input, textarea');
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursor.style.width = '50px';
+                    cursor.style.height = '50px';
+                    cursor.style.opacity = '0.3';
+                    cursor.style.filter = 'blur(15px)';
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursor.style.width = '20px';
+                    cursor.style.height = '20px';
+                    cursor.style.opacity = '0.6';
+                    cursor.style.filter = 'blur(8px)';
+                });
+            });
+        }
+
+        setupCursorListeners();
+        animate();
+
+        function toggleMoreTech() {
+            const moreTech = document.getElementById('more-tech');
+            const btn = document.getElementById('btn-ver-mais');
+
+            if (moreTech.classList.contains('show')) {
+                moreTech.classList.remove('show');
+                btn.innerHTML = 'Ver mais <i class="fa-solid fa-chevron-down ml-2 text-xs group-hover:translate-y-1 transition-transform" id="ver-mais-icon"></i>';
+            } else {
+                moreTech.classList.add('show');
+                btn.innerHTML = 'Ver menos <i class="fa-solid fa-chevron-up ml-2 text-xs group-hover:-translate-y-1 transition-transform" id="ver-mais-icon"></i>';
+            }
+            setupCursorListeners();
+        }
+
+        function toggleMoreProjects() {
+            const moreProjects = document.getElementById('more-projects');
+            const btn = document.getElementById('btn-ver-mais-projetos');
+
+            if (moreProjects.classList.contains('show')) {
+                moreProjects.classList.remove('show');
+                btn.innerHTML = 'Ver mais projetos <i class="fa-solid fa-chevron-down ml-2 text-xs group-hover:translate-y-1 transition-transform" id="ver-mais-projetos-icon"></i>';
+            } else {
+                moreProjects.classList.add('show');
+                btn.innerHTML = 'Ver menos <i class="fa-solid fa-chevron-up ml-2 text-xs group-hover:-translate-y-1 transition-transform" id="ver-mais-projetos-icon"></i>';
+            }
+            setupCursorListeners();
+        }
+    </script>
+</body>
+
+</html>

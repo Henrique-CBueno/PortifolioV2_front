@@ -1,0 +1,67 @@
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+.tech-card:hover {
+    transform: translateY(-5px);
+    border-color: #3b82f6;
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+}
+.bg-grid-pattern {
+    background-image: linear-gradient(to right, rgba(59, 130, 246, 0.05) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+}
+
+/* Expandable Containers Transition */
+.expandable-container {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease-in-out;
+}
+.expandable-container.show {
+    max-height: 2000px; /* Large enough to fit content */
+    opacity: 1;
+    margin-top: 1.5rem;
+}
+
+
+@keyframes name-title-boing-left {
+  0% {
+    transform: translateX(0) scaleX(1);
+  }
+  30% {
+    transform: translateX(-12px) scaleX(1.08);
+  }
+  58% {
+    transform: translateX(5px) scaleX(0.96);
+  }
+  78% {
+    transform: translateX(-2px) scaleX(1.02);
+  }
+  100% {
+    transform: translateX(0) scaleX(1);
+  }
+}
+
+@keyframes name-title-boing-right {
+  0% {
+    transform: translateX(0) scaleX(1);
+  }
+  30% {
+    transform: translateX(12px) scaleX(1.08);
+  }
+  58% {
+    transform: translateX(-5px) scaleX(0.96);
+  }
+  78% {
+    transform: translateX(2px) scaleX(1.02);
+  }
+  100% {
+    transform: translateX(0) scaleX(1);
+  }
+}
