@@ -1,3 +1,4 @@
+import project from "../../types/project";
 import NameTitle from "./ui/NameTitle";
 
 export default function Header() {
@@ -8,13 +9,13 @@ export default function Header() {
             <NameTitle />
 
             <div className="hidden md:flex md:items-center space-x-8 font-medium">
-                <a className="hover:text-brand-accent transition-colors" href="#home">Inicio</a>
-                <a className="hover:text-brand-accent transition-colors" href="#about">Sobre</a>
-                <a className="hover:text-brand-accent transition-colors" href="#journey">Jornada</a>
-                <a className="hover:text-brand-accent transition-colors" href="#stack">Habilidades</a>
-                <a className="hover:text-brand-accent transition-colors" href="#projects">Projetos</a>
-                <a className="px-5 py-2 bg-brand-accent text-white rounded-full hover:bg-blue-600 transition-all"
-                    href="#contact">Contact</a>
+                {project.header.sections.map((section) => (
+                    <a className="hover:text-brand-accent transition-colors" 
+                    href={section.href}
+                    key={section.name}>
+                        {section.name}
+                    </a>
+                ))}
             </div>
         </nav>
         </header>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import project from "../../../types/project";
 
 export default function NameTitle() {
     const [boingId, setBoingId] = useState(0);
@@ -11,7 +12,7 @@ export default function NameTitle() {
             <span key={`left-${boingId}`} className="name-title-bracket-left inline-block text-brand-accent">
                 &lt;
             </span>
-            HENRIQUE BUENO
+            {project.header.whiteTitle.trim()}
             <span key={`right-${boingId}`} className="name-title-bracket-right inline-block text-brand-accent">
                 /&gt;
             </span>
