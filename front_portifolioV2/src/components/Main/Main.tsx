@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
+import project from "../../types/project";
 
 export default function Main() {
-    const rotatingWords = ["Infrastructure.", "Cloud.", "Backends.", "Scalability."];
+    const rotatingWords = project.hero.title.rotatingWords;
     const [wordIndex, setWordIndex] = useState(0);
     const [outgoingWord, setOutgoingWord] = useState<string | null>(null);
     const [transitionId, setTransitionId] = useState(0);
@@ -47,10 +48,10 @@ export default function Main() {
                 <div className="flex flex-col lg:flex-row items-center gap-12 text-center lg:text-left">
                     <div className="lg:w-2/3 animate-fade-in">
                         <h2 className="text-brand-accent font-mono mb-4 text-lg tracking-widest uppercase">
-                            System Architect &amp; Cloud Expert
+                            {project.hero.blueHelperText}
                         </h2>
                         <h1 className="text-5xl md:text-8xl font-black text-white mb-6 tracking-tight leading-tight">
-                            Java Fullstack <br />
+                            {project.hero.title.whiteTitle} <br />
                             <span className="hero-rotating-word-slot align-bottom">
                                 {outgoingWord ? (
                                     <span className="hero-word-out text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-500 to-indigo-600">
@@ -66,22 +67,21 @@ export default function Main() {
                             </span>
                         </h1>
                         <p className="max-w-2xl text-gray-400 text-lg md:text-xl mb-10 leading-relaxed mx-auto lg:mx-0">
-                            Designing resilient distributed systems and scalable enterprise backends with Java, Spring Boot, and AWS.
-                            Bridging the gap between complex logic and cloud performance.
+                            {project.hero.subtitle}
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                             <a
                                 className="px-8 py-4 bg-brand-accent text-white font-bold rounded-lg hover:shadow-lg hover:shadow-blue-500/30 transition-all flex items-center justify-center gap-2 group"
-                                href="#projects"
+                                href={project.hero.buttons.blueButton.href}
                             >
-                                View Case Studies{" "}
+                                {project.hero.buttons.blueButton.text}{" "}
                                 <i className="fa-solid fa-chevron-right text-sm group-hover:translate-x-1 transition-transform"></i>
                             </a>
                             <a
                                 className="px-8 py-4 border border-white/20 text-white font-bold rounded-lg hover:bg-white/5 transition-all flex items-center justify-center gap-2"
-                                href="#contact"
+                                href={project.hero.buttons.transparentButton.href}
                             >
-                                Initiate Project
+                                {project.hero.buttons.transparentButton.text}
                             </a>
                         </div>
                     </div>
@@ -91,24 +91,26 @@ export default function Main() {
                                 <div className="w-3 h-3 rounded-full bg-red-500"></div>
                                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                                <span className="ml-2 text-xs font-mono text-gray-500">CloudArchitecture.java</span>
+                                <span className="ml-2 text-xs font-mono text-gray-500">{project.hero.code.archiveName}</span>
                             </div>
                             <pre className="text-xs font-mono text-blue-400 leading-relaxed">
-                                <span className="text-purple-400">@Service</span>
+                                <span className="text-purple-400">{project.hero.code.snippet.serviceAnnotation}</span>
                                 {"\n"}
-                                <span className="text-white">public class</span> Deployment {"{"}
+                                <span className="text-white">{project.hero.code.snippet.classKeyword}</span> {project.hero.code.snippet.className} {"{"}
                                 {"\n  "}
-                                <span className="text-gray-500">// AWS Infrastructure</span>
+                                <span className="text-gray-500">{project.hero.code.snippet.infrastructureComment}</span>
                                 {"\n  "}
-                                <span className="text-purple-400">@Autowired</span>
+                                <span className="text-purple-400">{project.hero.code.snippet.autowiredAnnotation}</span>
                                 {"\n  "}
-                                private CloudService aws;
+                                {project.hero.code.snippet.awsField}
                                 {"\n\n  "}
-                                <span className="text-white">public void</span> deploy() {"{"}
+                                <span className="text-white">{project.hero.code.snippet.deploySignature}</span> {"{"}
                                 {"\n    "}
-                                aws.scale(<span className="text-orange-400">"us-east-1"</span>);
+                                {project.hero.code.snippet.deployCallPrefix}
+                                <span className="text-orange-400">"{project.hero.code.snippet.region}"</span>
+                                {project.hero.code.snippet.deployCallSuffix}
                                 {"\n    "}
-                                <span className="text-gray-500">// 99.9% uptime</span>
+                                <span className="text-gray-500">{project.hero.code.snippet.uptimeComment}</span>
                                 {"\n  "}
                                 {"}"}
                                 {"\n"}
@@ -116,7 +118,7 @@ export default function Main() {
                             </pre>
                         </div>
                         <div className="absolute -top-10 -right-10 p-6 bg-blue-900/20 backdrop-blur-xl border border-blue-500/20 rounded-2xl shadow-2xl transform -rotate-6 hover:rotate-0 transition-transform duration-500 -z-10">
-                            <i className="fa-brands fa-aws text-6xl text-orange-400 opacity-50"></i>
+                            <i className={`${project.hero.code.icon} text-6xl ${project.hero.code.iconColor} opacity-50`}></i>
                         </div>
                     </div>
                 </div>

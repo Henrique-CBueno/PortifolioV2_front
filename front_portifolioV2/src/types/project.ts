@@ -33,6 +33,42 @@ const project = {
             }
         ]
     },
+    hero: {
+        blueHelperText: "System Architect & Cloud Expert",
+        title: {
+            whiteTitle: "Java Fullstack",
+            rotatingWords: ["Infrastructure.", "Cloud.", "Backends.", "Scalability."]
+        },
+        subtitle: "Designing resilient distributed systems and scalable enterprise backends with Java, Spring Boot, and AWS. Bridging the gap between complex logic and cloud performance.",
+        buttons: {
+            blueButton: {
+                text: "View Case Studies",
+                href: "#projects"
+            },
+            transparentButton: {
+                text: "Initiate Project",
+                href: "#contact"
+            }
+        },
+        code: {
+            archiveName: "CloudArchitecture.java",
+            snippet: {
+                serviceAnnotation: "@Service",
+                classKeyword: "public class",
+                className: "Deployment",
+                infrastructureComment: "// AWS Infrastructure",
+                autowiredAnnotation: "@Autowired",
+                awsField: "private CloudService aws;",
+                deploySignature: "public void deploy()",
+                deployCallPrefix: "aws.scale(",
+                region: "us-east-1",
+                deployCallSuffix: ");",
+                uptimeComment: "// 99.9% uptime"
+            },
+            icon: "fa-brands fa-aws",
+            iconColor: "text-orange-400"
+        }
+    },
     about: {
         id: "about",
         img: fotoHenrique,
