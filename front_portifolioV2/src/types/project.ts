@@ -192,6 +192,49 @@ const project = {
                 helperText: "Data Querying"
             }
         ]
+    },
+    projects: {
+        title: "Selected Works",
+        subtitle: "A collection of cloud-native enterprise solutions.",
+        githubButtonText: "View All Github",
+        githubButtonHref: "#",
+        caseStudyButtonText: "Case Study",
+        showLessText: "Ver menos",
+        showMoreText: "Ver mais projetos",
+        items: [
+            {
+                imageAlt: "Project 1",
+                imageSrc: "https://lh3.googleusercontent.com/aida-public/AB6AXuD8Dud-Q5vv6DW_a8NdIasLu1t-wJ13v__sjdRy7y1kK3yEohnfpt7zL8aFG0ZLXK2YzY2QwFFZJwCkULbffQG4qknAz7QO4e9SISOfbVAQFl_T9NsE_GynHkrsQzS57dDSgFb4qYKkTMBvyeT-4V6GLkxfdDUtw41NOsqZwN7Tk5scl1CjhXyX_gXqHjz3gPbxR9Di8q_e_Gd-qVbj2ouLp3DucSqWXL8J7EyZYEdrPN3Kc64KKtUq0PwSlARbjrEASszmV061Hq8",
+                tags: ["Java", "AWS Lambda"],
+                title: "Serverless E-Commerce API",
+                description: "A high-performance backend processing millions of transactions daily using AWS Lambda and DynamoDB.",
+                href: "#"
+            },
+            {
+                imageAlt: "Project 2",
+                imageSrc: "https://lh3.googleusercontent.com/aida-public/AB6AXuD9_r_nwDRSDiFIILb4YDvFBy0WmiOO1CcufpfjIklB6oewR9S17e0NyofEZa0wduE8mms_WvkUuWE23beBXct0ICA9C9VIKpx3NlPv3a-quK4Nd7IYx_EVrxfktxb_-BnW7nhTDKb42ENgDzRBJEz6QKq7ZyvHF9K3feJ57H2S8e1DfnxPfHjM7VoYiSJ6M1s8fqhCNZ4mCf9UfndWtTvO6LxFO-9v-qJ83Fjv6PQZv1DmkGNUI3-AsoeeWy0QoKPV2r_5uxcApKM",
+                tags: ["Spring Boot", "Docker"],
+                title: "Real-time Data Pipeline",
+                description: "Real-time data visualization tool for monitoring Kubernetes cluster health and resource allocation.",
+                href: "#"
+            },
+            {
+                imageAlt: "Project 3",
+                imageSrc: "https://lh3.googleusercontent.com/aida-public/AB6AXuAn-K3qV_8Q5J0K8_H8X-l5V5zX8O5TzQ7B8I0Y5L9P-M9N9K8J7I6H5G4F3E2D1C0B9A8-X-Z-Y-W-V-U-T-S-R-Q-P-O-N-M-L-K-J-I-H-G-F-E-D-C-B-A",
+                tags: ["AWS Glue", "React"],
+                title: "Cloud-Native Analytics Dashboard",
+                description: "A comprehensive analytics engine processing large datasets via AWS Glue with a dynamic React dashboard.",
+                href: "#"
+            },
+            {
+                imageAlt: "Project 4",
+                imageSrc: "https://lh3.googleusercontent.com/aida-public/AB6AXuA7-H9G8F7E6D5C4B3A2Z1Y0X9W8V7U6T5S4R3Q2P1O0N9M8L7K6J5I4H3G2F1E0D9C8B7A6-X-Z-Y-W-V-U-T-S-R-Q-P-O-N-M-L-K-J-I-H-G-F-E-D-C-B-A",
+                tags: ["GitHub Actions", "Terraform"],
+                title: "Automated CI/CD Pipeline",
+                description: "Standardized DevOps infrastructure across 15+ microservices, reducing deployment time by 60%.",
+                href: "#"
+            }
+        ]
     }
 }
 
