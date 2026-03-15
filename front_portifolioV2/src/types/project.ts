@@ -301,6 +301,27 @@ const project = {
             detailsPlaceholder: "Tell me about your project...",
             submitButtonText: "Send Message"
         }
+    },
+    footer: {
+        portfolioName: "Henrique Bueno Portifolio",
+        rightsText: "All rights reserved.",
+        socialLinks: [
+            {
+                icon: "fa-brands fa-github",
+                href: "#",
+                ariaLabel: "GitHub"
+            },
+            {
+                icon: "fa-brands fa-linkedin",
+                href: "#",
+                ariaLabel: "LinkedIn"
+            },
+            {
+                icon: "fa-brands fa-twitter",
+                href: "#",
+                ariaLabel: "Twitter"
+            }
+        ]
     }
 }
 
