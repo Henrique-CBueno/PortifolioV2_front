@@ -87,6 +87,32 @@ const project = {
                 helperText: "Projects Done"
             }
         ]
+    },
+    journey: {
+        title: "Professional Journey",
+        jobs: [
+            {
+                startTime: "2021",
+                endTime: null,
+                whiteTitle: "Senior Cloud Architect",
+                enterprise: "Tech Solutions Inc.",
+                description: "Leading the migration of legacy monolithic architectures to AWS microservices using Spring Boot and Kubernetes. Reduced operational costs by 35%."
+            },
+            {
+                startTime: "2019",
+                endTime: "2021",
+                whiteTitle: "Fullstack Developer",
+                enterprise: "Fintech Innovators",
+                description: "Developed real-time payment processing gateways with Java 11. Implemented responsive React frontends integrated with RESTful APIs."
+            },
+            {
+                startTime: "2017",
+                endTime: "2019",
+                whiteTitle: "Junior Backend Engineer",
+                enterprise: "CodeBase Labs",
+                description: "Assisted in building scalable database schemas using PostgreSQL and optimized JVM performance for high-traffic data ingestion services."
+            }
+        ]
     }
 }
 
