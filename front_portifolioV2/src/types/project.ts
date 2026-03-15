@@ -288,6 +288,19 @@ const project = {
                 description: "Certification for Infrastructure as Code management and cloud provisioning best practices."
             }
         ]
+    },
+    contact: {
+        title: "Start a project.",
+        subtitle: "Interested in working together? Let's discuss your next cloud-native architecture or Java backend project.",
+        form: {
+            nameLabel: "Your Name",
+            namePlaceholder: "John Doe",
+            emailLabel: "Email Address",
+            emailPlaceholder: "john@example.com",
+            detailsLabel: "Project Details",
+            detailsPlaceholder: "Tell me about your project...",
+            submitButtonText: "Send Message"
+        }
     }
 }
 
