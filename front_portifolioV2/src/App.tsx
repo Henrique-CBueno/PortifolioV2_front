@@ -1,4 +1,5 @@
 import About from "./components/About/About"
+import Certifications from "./components/Certifications/Certifications"
 import Contact from "./components/Contact/Contact"
 import Footer from "./components/Footer/Footer"
 import Header from "./components/Header/Header"
@@ -19,6 +20,7 @@ function App() {
         <Journey />
         <Stacks />
         <Projects />
+        <Certifications />
         <Contact />
         <Footer />
     </div>
