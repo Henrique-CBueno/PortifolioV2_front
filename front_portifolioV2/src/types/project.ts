@@ -113,6 +113,85 @@ const project = {
                 description: "Assisted in building scalable database schemas using PostgreSQL and optimized JVM performance for high-traffic data ingestion services."
             }
         ]
+    },
+    stacks: {
+        title: "Core Technology Stack",
+        showLessText: "Ver menos",
+        showMoreText: "Ver mais",
+        items: [
+            {
+                name: "Java",
+                icon: "fa-brands fa-java",
+                iconColor: "text-brand-accent",
+                helperText: "Enterprise Logic"
+            },
+            {
+                name: "AWS",
+                icon: "fa-brands fa-aws",
+                iconColor: "text-orange-400",
+                helperText: "Cloud Infrastructure"
+            },
+            {
+                name: "Spring Boot",
+                icon: "fa-solid fa-leaf",
+                iconColor: "text-green-500",
+                helperText: "Microservices"
+            },
+            {
+                name: "Docker",
+                icon: "fa-brands fa-docker",
+                iconColor: "text-blue-400",
+                helperText: "Containerization"
+            },
+            {
+                name: "React",
+                icon: "fa-brands fa-react",
+                iconColor: "text-cyan-400",
+                helperText: "Modern Frontend"
+            },
+            {
+                name: "PostgreSQL",
+                icon: "fa-solid fa-database",
+                iconColor: "text-blue-500",
+                helperText: "Relational DB"
+            },
+            {
+                name: "Redis",
+                icon: "fa-solid fa-bolt",
+                iconColor: "text-red-500",
+                helperText: "Caching Layer"
+            },
+            {
+                name: "Kubernetes",
+                icon: "fa-solid fa-dharmachakra",
+                iconColor: "text-blue-600",
+                helperText: "Orchestration"
+            },
+            {
+                name: "Jenkins",
+                icon: "fa-brands fa-github-alt",
+                iconColor: "text-white",
+                helperText: "Automation CI/CD"
+            },
+            {
+                name: "Terraform",
+                icon: "fa-solid fa-layer-group",
+                iconColor: "text-purple-500",
+                helperText: "IaC Management"
+            },
+            {
+                name: "Hibernate",
+                icon: "fa-solid fa-server",
+                iconColor: "text-orange-600",
+                helperText: "ORM Framework"
+            },
+            {
+                name: "SQL",
+                icon: "fa-solid fa-terminal",
+                iconColor: "text-gray-400",
+                helperText: "Data Querying"
+            }
+        ]
     }
 }
 
