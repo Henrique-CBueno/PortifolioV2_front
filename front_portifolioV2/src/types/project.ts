@@ -2,8 +2,8 @@ import fotoHenrique from "../../public/avatar-2-semBG.png";
 
 const project = {
     id: 1,
-    name: "Project Name",
-    description: "Project Description",
+    name: "Portfólio Henrique Bueno",
+    description: "Portfólio profissional de arquitetura de software, cloud e desenvolvimento fullstack.",
     header: {
         whiteTitle: "HENRIQUE BUENO",
         sections: [
@@ -28,42 +28,42 @@ const project = {
                 href: "#projects"
              },
              { 
-                name: "Contact",
+                name: "Contato",
                 href: "#contact"
             }
         ]
     },
     hero: {
-        blueHelperText: "System Architect & Cloud Expert",
+        blueHelperText: "Arquiteto de Sistemas e Especialista em Cloud",
         title: {
-            whiteTitle: "Java Fullstack",
-            rotatingWords: ["Infrastructure.", "Cloud.", "Backends.", "Scalability."]
+            whiteTitle: "Fullstack Java",
+            rotatingWords: ["Infraestrutura.", "Cloud.", "Backend.", "Escalabilidade.", "AI."]
         },
-        subtitle: "Designing resilient distributed systems and scalable enterprise backends with Java, Spring Boot, and AWS. Bridging the gap between complex logic and cloud performance.",
+        subtitle: "Desenvolvendo sistemas distribuídos resilientes e backends corporativos escaláveis com Java, Spring Boot e AWS. Conectando lógica complexa com performance em nuvem.",
         buttons: {
             blueButton: {
-                text: "View Case Studies",
+                text: "Ver estudos de caso",
                 href: "#projects"
             },
             transparentButton: {
-                text: "Initiate Project",
+                text: "Iniciar projeto",
                 href: "#contact"
             }
         },
         code: {
-            archiveName: "CloudArchitecture.java",
+            archiveName: "ArquiteturaCloud.java",
             snippet: {
                 serviceAnnotation: "@Service",
                 classKeyword: "public class",
                 className: "Deployment",
-                infrastructureComment: "// AWS Infrastructure",
+                infrastructureComment: "// Infraestrutura AWS",
                 autowiredAnnotation: "@Autowired",
                 awsField: "private CloudService aws;",
                 deploySignature: "public void deploy()",
                 deployCallPrefix: "aws.scale(",
                 region: "us-east-1",
                 deployCallSuffix: ");",
-                uptimeComment: "// 99.9% uptime"
+                uptimeComment: "// 99,9% de disponibilidade"
             },
             icon: "fa-brands fa-aws",
             iconColor: "text-orange-400"
@@ -72,50 +72,50 @@ const project = {
     about: {
         id: "about",
         img: fotoHenrique,
-        title: "Building the backend of tomorrow.",
+        title: "Construindo o backend do amanhã.",
         description: [
-            "I am a software engineer with over 5 years of experience in developing distributed systems and cloud-native applications. My passion lies in solving complex architectural challenges and optimizing performance in high-traffic environments.",
-            "Based in the cloud, I leverage AWS services to ensure high availability and scalability for every project I touch, from initial concept to production deployment."
+            "Sou engenheiro de software com mais de 1 anos de experiência no desenvolvimento de sistemas distribuídos e aplicações cloud-native. Minha paixão está em resolver desafios arquiteturais complexos e otimizar performance em ambientes de alto tráfego.",
+            "Com forte atuação em cloud, utilizo serviços AWS para garantir alta disponibilidade e escalabilidade em cada projeto, do conceito inicial até a produção."
         ],
         cards: [
             {
-                emphasis: "5+",
-                helperText: "Years Exp."
+                emphasis: "1+",
+                helperText: "Anos de exp."
             },
             {
                 emphasis: "20+",
-                helperText: "Projects Done"
+                helperText: "Projetos entregues"
             }
         ]
     },
     journey: {
-        title: "Professional Journey",
+        title: "Jornada Profissional",
         jobs: [
             {
-                startTime: "2021",
+                startTime: "Fev 2026",
                 endTime: null,
-                whiteTitle: "Senior Cloud Architect",
-                enterprise: "Tech Solutions Inc.",
-                description: "Leading the migration of legacy monolithic architectures to AWS microservices using Spring Boot and Kubernetes. Reduced operational costs by 35%."
+                whiteTitle: "Analista de Implementação Júnior",
+                enterprise: "BMP - Banco Money Plus • São Paulo - SP, Brasil",
+                description: "Atuação na implantação, configuração e manutenção de soluções financeiras e infraestrutura em nuvem com foco no ecossistema AWS, incluindo EC2, S3, RDS, VPC e CloudWatch. Responsável por integrações financeiras baseadas em CaaS e BaaS, suporte técnico B2B, alinhamento de requisitos técnicos, resolução de incidentes e apoio na estruturação de arquiteturas cloud com otimização de custos e recursos."
             },
             {
-                startTime: "2019",
-                endTime: "2021",
-                whiteTitle: "Fullstack Developer",
-                enterprise: "Fintech Innovators",
-                description: "Developed real-time payment processing gateways with Java 11. Implemented responsive React frontends integrated with RESTful APIs."
+                startTime: "Ago 2025",
+                endTime: "Fev 2026",
+                whiteTitle: "Desenvolvedor de Software",
+                enterprise: "SEA Tecnologia • São Paulo - SP, Brasil",
+                description: "Atuação no desenvolvimento, sustentação e evolução do sistema NegociaDF, com foco em estabilidade, segurança e alta disponibilidade. Desenvolvimento backend com Java e Spring Boot, refatorações com SOLID, Clean Code e Design Patterns, implementação de segurança com Spring Security, replicação de bancos relacionais, automações com Python e fluxos automatizados de geração e envio de e-mails e PDFs integrados ao backend."
             },
             {
-                startTime: "2017",
-                endTime: "2019",
-                whiteTitle: "Junior Backend Engineer",
-                enterprise: "CodeBase Labs",
-                description: "Assisted in building scalable database schemas using PostgreSQL and optimized JVM performance for high-traffic data ingestion services."
+                startTime: "Abr 2025",
+                endTime: "Ago 2025",
+                whiteTitle: "Desenvolvedor Full Stack",
+                enterprise: "Freelancer • Remoto",
+                description: "Desenvolvimento de uma plataforma SaaS do zero com foco em confiabilidade, segurança e escalabilidade. Arquitetura baseada em microsserviços com Java e Spring Boot, processamento assíncrono, autenticação e autorização com Keycloak e Spring Security incluindo 2FA via OTP, mensageria com RabbitMQ e infraestrutura AWS com S3, Docker, PostgreSQL com replicação e Terraform."
             }
         ]
     },
     stacks: {
-        title: "Core Technology Stack",
+        title: "Stack Principal",
         showLessText: "Ver menos",
         showMoreText: "Ver mais",
         items: [
@@ -123,121 +123,121 @@ const project = {
                 name: "Java",
                 icon: "fa-brands fa-java",
                 iconColor: "text-brand-accent",
-                helperText: "Enterprise Logic"
+                helperText: "Lógica corporativa"
             },
             {
                 name: "AWS",
                 icon: "fa-brands fa-aws",
                 iconColor: "text-orange-400",
-                helperText: "Cloud Infrastructure"
+                helperText: "Infraestrutura cloud"
             },
             {
                 name: "Spring Boot",
                 icon: "fa-solid fa-leaf",
                 iconColor: "text-green-500",
-                helperText: "Microservices"
+                helperText: "Microsserviços"
             },
             {
                 name: "Docker",
                 icon: "fa-brands fa-docker",
                 iconColor: "text-blue-400",
-                helperText: "Containerization"
+                helperText: "Conteinerização"
             },
             {
                 name: "React",
                 icon: "fa-brands fa-react",
                 iconColor: "text-cyan-400",
-                helperText: "Modern Frontend"
+                helperText: "Frontend moderno"
             },
             {
                 name: "PostgreSQL",
                 icon: "fa-solid fa-database",
                 iconColor: "text-blue-500",
-                helperText: "Relational DB"
+                helperText: "Banco relacional"
             },
             {
                 name: "Redis",
                 icon: "fa-solid fa-bolt",
                 iconColor: "text-red-500",
-                helperText: "Caching Layer"
+                helperText: "Camada de cache"
             },
             {
                 name: "Kubernetes",
                 icon: "fa-solid fa-dharmachakra",
                 iconColor: "text-blue-600",
-                helperText: "Orchestration"
+                helperText: "Orquestração"
             },
             {
                 name: "Jenkins",
                 icon: "fa-brands fa-github-alt",
                 iconColor: "text-white",
-                helperText: "Automation CI/CD"
+                helperText: "Automação CI/CD"
             },
             {
                 name: "Terraform",
                 icon: "fa-solid fa-layer-group",
                 iconColor: "text-purple-500",
-                helperText: "IaC Management"
+                helperText: "Gestão de IaC"
             },
             {
                 name: "Hibernate",
                 icon: "fa-solid fa-server",
                 iconColor: "text-orange-600",
-                helperText: "ORM Framework"
+                helperText: "Framework ORM"
             },
             {
                 name: "SQL",
                 icon: "fa-solid fa-terminal",
                 iconColor: "text-gray-400",
-                helperText: "Data Querying"
+                helperText: "Consulta de dados"
             }
         ]
     },
     projects: {
-        title: "Selected Works",
-        subtitle: "A collection of cloud-native enterprise solutions.",
-        githubButtonText: "View All Github",
+        title: "Projetos em Destaque",
+        subtitle: "Uma seleção de soluções corporativas cloud-native.",
+        githubButtonText: "Ver todo o GitHub",
         githubButtonHref: "#",
-        caseStudyButtonText: "Case Study",
+        caseStudyButtonText: "Estudo de caso",
         showLessText: "Ver menos",
         showMoreText: "Ver mais projetos",
         items: [
             {
-                imageAlt: "Project 1",
+                imageAlt: "Gioia Investimentos",
                 imageSrc: "https://lh3.googleusercontent.com/aida-public/AB6AXuD8Dud-Q5vv6DW_a8NdIasLu1t-wJ13v__sjdRy7y1kK3yEohnfpt7zL8aFG0ZLXK2YzY2QwFFZJwCkULbffQG4qknAz7QO4e9SISOfbVAQFl_T9NsE_GynHkrsQzS57dDSgFb4qYKkTMBvyeT-4V6GLkxfdDUtw41NOsqZwN7Tk5scl1CjhXyX_gXqHjz3gPbxR9Di8q_e_Gd-qVbj2ouLp3DucSqWXL8J7EyZYEdrPN3Kc64KKtUq0PwSlARbjrEASszmV061Hq8",
-                tags: ["Java", "AWS Lambda"],
-                title: "Serverless E-Commerce API",
-                description: "A high-performance backend processing millions of transactions daily using AWS Lambda and DynamoDB.",
+                tags: ["Java", "Spring Boot", "AWS"],
+                title: "Gioia Investimentos",
+                description: "Plataforma completa de consultoria macroeconômica, estruturada para oferecer confiabilidade, escalabilidade e uma experiência sólida na entrega de análises e serviços financeiros.",
                 href: "#"
             },
             {
-                imageAlt: "Project 2",
+                imageAlt: "NegociaDF",
                 imageSrc: "https://lh3.googleusercontent.com/aida-public/AB6AXuD9_r_nwDRSDiFIILb4YDvFBy0WmiOO1CcufpfjIklB6oewR9S17e0NyofEZa0wduE8mms_WvkUuWE23beBXct0ICA9C9VIKpx3NlPv3a-quK4Nd7IYx_EVrxfktxb_-BnW7nhTDKb42ENgDzRBJEz6QKq7ZyvHF9K3feJ57H2S8e1DfnxPfHjM7VoYiSJ6M1s8fqhCNZ4mCf9UfndWtTvO6LxFO-9v-qJ83Fjv6PQZv1DmkGNUI3-AsoeeWy0QoKPV2r_5uxcApKM",
-                tags: ["Spring Boot", "Docker"],
-                title: "Real-time Data Pipeline",
-                description: "Real-time data visualization tool for monitoring Kubernetes cluster health and resource allocation.",
+                tags: ["Java", "Liferay", "React"],
+                title: "NegociaDF",
+                description: "Participação no desenvolvimento do NegociaDF, sistema de grande escala com foco em estabilidade e evolução contínua, atuando em funcionalidades e melhorias com Java, Liferay e React em fluxos sensíveis ao negócio.",
                 href: "#"
             },
             {
-                imageAlt: "Project 3",
+                imageAlt: "Projeto 3",
                 imageSrc: "https://lh3.googleusercontent.com/aida-public/AB6AXuAn-K3qV_8Q5J0K8_H8X-l5V5zX8O5TzQ7B8I0Y5L9P-M9N9K8J7I6H5G4F3E2D1C0B9A8-X-Z-Y-W-V-U-T-S-R-Q-P-O-N-M-L-K-J-I-H-G-F-E-D-C-B-A",
                 tags: ["AWS Glue", "React"],
-                title: "Cloud-Native Analytics Dashboard",
-                description: "A comprehensive analytics engine processing large datasets via AWS Glue with a dynamic React dashboard.",
+                title: "Dashboard Analítico Cloud-Native",
+                description: "Motor analítico completo processando grandes volumes de dados com AWS Glue e um dashboard dinâmico em React.",
                 href: "#"
             },
             {
-                imageAlt: "Project 4",
+                imageAlt: "Projeto 4",
                 imageSrc: "https://lh3.googleusercontent.com/aida-public/AB6AXuA7-H9G8F7E6D5C4B3A2Z1Y0X9W8V7U6T5S4R3Q2P1O0N9M8L7K6J5I4H3G2F1E0D9C8B7A6-X-Z-Y-W-V-U-T-S-R-Q-P-O-N-M-L-K-J-I-H-G-F-E-D-C-B-A",
                 tags: ["GitHub Actions", "Terraform"],
-                title: "Automated CI/CD Pipeline",
-                description: "Standardized DevOps infrastructure across 15+ microservices, reducing deployment time by 60%.",
+                title: "Pipeline CI/CD Automatizado",
+                description: "Padronização da infraestrutura DevOps em mais de 15 microsserviços, reduzindo o tempo de deploy em 60%.",
                 href: "#"
             }
         ]
     },
     certifications: {
-        title: "Certifications & Awards",
+        title: "Certificações e Reconhecimentos",
         items: [
             {
                 icon: "fa-award",
@@ -245,15 +245,15 @@ const project = {
                 iconWrapperClassName: "bg-brand-accent/10",
                 title: "AWS Certified Solutions Architect",
                 issuer: "Amazon Web Services",
-                description: "Professional certification for designing distributed systems on the AWS platform."
+                description: "Certificação profissional para o desenho de sistemas distribuídos na plataforma AWS."
             },
             {
                 icon: "fa-trophy",
                 iconClassName: "text-orange-400",
                 iconWrapperClassName: "bg-orange-400/10",
-                title: "Outstanding Performance Award",
+                title: "Prêmio de Performance de Destaque",
                 issuer: "Tech Solutions Inc.",
-                description: "Recognized for leading the legacy migration project with zero downtime and 35% cost savings."
+                description: "Reconhecimento pela liderança do projeto de migração legada com zero downtime e economia de 35% nos custos."
             },
             {
                 icon: "fa-shield-halved",
@@ -261,7 +261,7 @@ const project = {
                 iconWrapperClassName: "bg-green-500/10",
                 title: "Oracle Certified Professional",
                 issuer: "Oracle University",
-                description: "Java SE 11 Developer certification demonstrating deep understanding of the language."
+                description: "Certificação Java SE 11 Developer que demonstra domínio aprofundado da linguagem."
             },
             {
                 icon: "fa-medal",
@@ -269,7 +269,7 @@ const project = {
                 iconWrapperClassName: "bg-purple-500/10",
                 title: "Terraform Associate",
                 issuer: "HashiCorp",
-                description: "Certification for Infrastructure as Code management and cloud provisioning best practices."
+                description: "Certificação voltada à gestão de Infrastructure as Code e boas práticas de provisionamento em cloud."
             },
             {
                 icon: "fa-medal",
@@ -277,7 +277,7 @@ const project = {
                 iconWrapperClassName: "bg-purple-500/10",
                 title: "Terraform Associate 2",
                 issuer: "HashiCorp",
-                description: "Certification for Infrastructure as Code management and cloud provisioning best practices."
+                description: "Certificação voltada à gestão de Infrastructure as Code e boas práticas de provisionamento em cloud."
             },
             {
                 icon: "fa-medal",
@@ -285,26 +285,26 @@ const project = {
                 iconWrapperClassName: "bg-purple-500/10",
                 title: "Terraform Associate 3",
                 issuer: "HashiCorp",
-                description: "Certification for Infrastructure as Code management and cloud provisioning best practices."
+                description: "Certificação voltada à gestão de Infrastructure as Code e boas práticas de provisionamento em cloud."
             }
         ]
     },
     contact: {
-        title: "Start a project.",
-        subtitle: "Interested in working together? Let's discuss your next cloud-native architecture or Java backend project.",
+        title: "Vamos iniciar um projeto.",
+        subtitle: "Tem interesse em trabalharmos juntos? Vamos conversar sobre sua próxima arquitetura cloud-native ou projeto backend em Java.",
         form: {
-            nameLabel: "Your Name",
-            namePlaceholder: "John Doe",
-            emailLabel: "Email Address",
-            emailPlaceholder: "john@example.com",
-            detailsLabel: "Project Details",
-            detailsPlaceholder: "Tell me about your project...",
-            submitButtonText: "Send Message"
+            nameLabel: "Seu nome",
+            namePlaceholder: "João da Silva",
+            emailLabel: "Endereço de e-mail",
+            emailPlaceholder: "joao@exemplo.com",
+            detailsLabel: "Detalhes do projeto",
+            detailsPlaceholder: "Conte mais sobre o seu projeto...",
+            submitButtonText: "Enviar mensagem"
         }
     },
     footer: {
-        portfolioName: "Henrique Bueno Portifolio",
-        rightsText: "All rights reserved.",
+        portfolioName: "Portfólio Henrique Bueno",
+        rightsText: "Todos os direitos reservados.",
         socialLinks: [
             {
                 icon: "fa-brands fa-github",

@@ -49,7 +49,7 @@ export default function Journey() {
                         {project.journey.jobs.map((job, index) => {
                             const isLeft = index % 2 === 0;
                             const isActive = index === 0;
-                            const period = `${job.startTime} - ${job.endTime ?? "Present"}`;
+                            const period = `${job.startTime} - ${job.endTime ?? "Presente"}`;
                             const dotClassName = isActive
                                 ? "absolute left-1/2 -translate-x-1/2 w-4 h-4 bg-brand-accent rounded-full border-4 border-brand-dark z-10 hidden md:block shadow-[0_0_15px_rgba(59,130,246,0.6)]"
                                 : "absolute left-1/2 -translate-x-1/2 w-4 h-4 bg-gray-600 rounded-full border-4 border-brand-dark z-10 hidden md:block";
