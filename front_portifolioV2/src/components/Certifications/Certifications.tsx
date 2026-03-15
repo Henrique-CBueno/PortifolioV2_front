@@ -1,66 +1,11 @@
 import { useRef, useState, useEffect } from "react";
-
-const certifications = [
-    {
-        icon: "fa-award",
-        iconClassName: "text-brand-accent",
-        iconWrapperClassName: "bg-brand-accent/10",
-        title: "AWS Certified Solutions Architect",
-        issuer: "Amazon Web Services",
-        description:
-            "Professional certification for designing distributed systems on the AWS platform.",
-    },
-    {
-        icon: "fa-trophy",
-        iconClassName: "text-orange-400",
-        iconWrapperClassName: "bg-orange-400/10",
-        title: "Outstanding Performance Award",
-        issuer: "Tech Solutions Inc.",
-        description:
-            "Recognized for leading the legacy migration project with zero downtime and 35% cost savings.",
-    },
-    {
-        icon: "fa-shield-halved",
-        iconClassName: "text-green-500",
-        iconWrapperClassName: "bg-green-500/10",
-        title: "Oracle Certified Professional",
-        issuer: "Oracle University",
-        description:
-            "Java SE 11 Developer certification demonstrating deep understanding of the language.",
-    },
-    {
-        icon: "fa-medal",
-        iconClassName: "text-purple-500",
-        iconWrapperClassName: "bg-purple-500/10",
-        title: "Terraform Associate",
-        issuer: "HashiCorp",
-        description:
-            "Certification for Infrastructure as Code management and cloud provisioning best practices.",
-    },
-    {
-        icon: "fa-medal",
-        iconClassName: "text-purple-500",
-        iconWrapperClassName: "bg-purple-500/10",
-        title: "Terraform Associate 2",
-        issuer: "HashiCorp",
-        description:
-            "Certification for Infrastructure as Code management and cloud provisioning best practices.",
-    },
-    {
-        icon: "fa-medal",
-        iconClassName: "text-purple-500",
-        iconWrapperClassName: "bg-purple-500/10",
-        title: "Terraform Associate 3",
-        issuer: "HashiCorp",
-        description:
-            "Certification for Infrastructure as Code management and cloud provisioning best practices.",
-    },
-];
+import project from "../../types/project";
 
 export default function Certifications() {
     const sliderRef = useRef<HTMLDivElement | null>(null);
     const [activePage, setActivePage] = useState(0);
     const [cardsPerView, setCardsPerView] = useState(1);
+    const certificationsData = project.certifications;
 
     function getCards() {
         const slider = sliderRef.current;
@@ -87,7 +32,7 @@ export default function Certifications() {
         return () => window.removeEventListener("resize", updateCardsPerView);
     }, []);
 
-    const totalPages = Math.ceil(certifications.length / cardsPerView);
+    const totalPages = Math.ceil(certificationsData.items.length / cardsPerView);
 
     function scrollToPage(page: number) {
         const cards = getCards();
@@ -146,7 +91,7 @@ export default function Certifications() {
             <div className="max-w-7xl mx-auto px-6">
                 <div className="mb-12">
                     <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                        Certifications & Awards
+                        {certificationsData.title}
                     </h2>
                     <div className="h-1.5 w-20 bg-brand-accent rounded-full"></div>
                 </div>
@@ -157,9 +102,9 @@ export default function Certifications() {
                         ref={sliderRef}
                         onScroll={handleSliderScroll}
                     >
-                        {certifications.map((certification, index) => (
+                        {certificationsData.items.map((certification) => (
                             <div
-                                key={index}
+                                key={certification.title}
                                 data-card
                                 className="flex-none w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] snap-center"
                             >

@@ -235,6 +235,59 @@ const project = {
                 href: "#"
             }
         ]
+    },
+    certifications: {
+        title: "Certifications & Awards",
+        items: [
+            {
+                icon: "fa-award",
+                iconClassName: "text-brand-accent",
+                iconWrapperClassName: "bg-brand-accent/10",
+                title: "AWS Certified Solutions Architect",
+                issuer: "Amazon Web Services",
+                description: "Professional certification for designing distributed systems on the AWS platform."
+            },
+            {
+                icon: "fa-trophy",
+                iconClassName: "text-orange-400",
+                iconWrapperClassName: "bg-orange-400/10",
+                title: "Outstanding Performance Award",
+                issuer: "Tech Solutions Inc.",
+                description: "Recognized for leading the legacy migration project with zero downtime and 35% cost savings."
+            },
+            {
+                icon: "fa-shield-halved",
+                iconClassName: "text-green-500",
+                iconWrapperClassName: "bg-green-500/10",
+                title: "Oracle Certified Professional",
+                issuer: "Oracle University",
+                description: "Java SE 11 Developer certification demonstrating deep understanding of the language."
+            },
+            {
+                icon: "fa-medal",
+                iconClassName: "text-purple-500",
+                iconWrapperClassName: "bg-purple-500/10",
+                title: "Terraform Associate",
+                issuer: "HashiCorp",
+                description: "Certification for Infrastructure as Code management and cloud provisioning best practices."
+            },
+            {
+                icon: "fa-medal",
+                iconClassName: "text-purple-500",
+                iconWrapperClassName: "bg-purple-500/10",
+                title: "Terraform Associate 2",
+                issuer: "HashiCorp",
+                description: "Certification for Infrastructure as Code management and cloud provisioning best practices."
+            },
+            {
+                icon: "fa-medal",
+                iconClassName: "text-purple-500",
+                iconWrapperClassName: "bg-purple-500/10",
+                title: "Terraform Associate 3",
+                issuer: "HashiCorp",
+                description: "Certification for Infrastructure as Code management and cloud provisioning best practices."
+            }
+        ]
     }
 }
 
