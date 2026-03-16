@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import project from "../../types/project";
 import NameTitle from "./ui/NameTitle";
 import AutoSizeInput from "../ui/AutoSizeInput";
 import DraggableReorderList from "../ui/DraggableReorderList";
+import { patchAdminSection } from "../../utils/adminDraft";
 
 export default function Header({ admin }: { admin?: boolean }) {
     const [adminSections, setAdminSections] = useState(() =>
@@ -46,6 +47,17 @@ export default function Header({ admin }: { admin?: boolean }) {
             return next;
         });
     };
+
+    useEffect(() => {
+        if (!admin) return;
+
+        patchAdminSection("header", {
+            sections: adminSections.map((section) => ({
+                name: section.name,
+                href: section.href,
+            })),
+        });
+    }, [admin, adminSections]);
 
     return (
         !admin ? (
@@ -101,7 +113,7 @@ export default function Header({ admin }: { admin?: boolean }) {
                                 <button
                                     type="button"
                                     onClick={() => removeSection(section.id)}
-                                    className="h-6 w-6 absolute -top-6 -ml-5 rounded-full bg-brand-dark/95 text-xs leading-none text-red-300/85 ring-1 ring-white/25 transition-all hover:text-red-200 hover:ring-white/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-300/60"
+                                    className="h-6 w-6 absolute -top-6 ml-5 rounded-full bg-brand-dark/95 text-xs leading-none text-red-300/85 ring-1 ring-white/25 transition-all hover:text-red-200 hover:ring-white/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-300/60"
                                     title="Remover item"
                                 >
                                     x

@@ -1,9 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import project from "../../../types/project";
 import AutoSizeInput from "../../ui/AutoSizeInput";
+import { patchAdminSection } from "../../../utils/adminDraft";
 
-export default function NameTitle({ admin } : { admin?:Boolean }) {
+export default function NameTitle({ admin }: { admin?: boolean }) {
     const [boingId, setBoingId] = useState(0);
+    const [whiteTitle, setWhiteTitle] = useState(project.header.whiteTitle.trim());
+
+    useEffect(() => {
+        if (!admin) return;
+
+        patchAdminSection("header", { whiteTitle });
+    }, [admin, whiteTitle]);
 
     return (
         !admin ? (
@@ -28,8 +36,9 @@ export default function NameTitle({ admin } : { admin?:Boolean }) {
                     &lt;
                 </span>
                 <AutoSizeInput
-                    defaultValue={project.header.whiteTitle.trim()}
+                    defaultValue={whiteTitle}
                     className="text-2xl font-bold tracking-tighter"
+                    onChange={setWhiteTitle}
                 />
                 <span key={`right-${boingId}`} className="name-title-bracket-right inline-block text-brand-accent">
                     /&gt;

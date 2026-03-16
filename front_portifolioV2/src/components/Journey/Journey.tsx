@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import project from "../../types/project";
 import AutoSizeInput from "../ui/AutoSizeInput";
+import { setAdminSection } from "../../utils/adminDraft";
 
 interface JourneyJobItem {
     id: string;
@@ -81,6 +82,21 @@ export default function Journey({ admin }: { admin?: boolean }) {
         };
     }, [admin]);
 
+    useEffect(() => {
+        if (!admin) return;
+
+        setAdminSection("journey", {
+            title: journeyTitle,
+            jobs: jobs.map((job) => ({
+                startTime: job.startTime,
+                endTime: job.endTime.trim() ? job.endTime : null,
+                whiteTitle: job.whiteTitle,
+                enterprise: job.enterprise,
+                description: job.description,
+            })),
+        });
+    }, [admin, journeyTitle, jobs]);
+
     return (
         <section className="py-24" data-purpose="career-milestones" id="journey" ref={sectionRef}>
             <div className="max-w-7xl mx-auto px-6">
@@ -159,7 +175,7 @@ export default function Journey({ admin }: { admin?: boolean }) {
                                                             job.whiteTitle
                                                         )}
                                                     </h4>
-                                                    <p className="text-brand-accent font-medium mb-2">
+                                                    <div className="text-brand-accent font-medium mb-2">
                                                         {admin ? (
                                                             <AutoSizeInput
                                                                 defaultValue={job.enterprise}
@@ -169,8 +185,8 @@ export default function Journey({ admin }: { admin?: boolean }) {
                                                         ) : (
                                                             job.enterprise
                                                         )}
-                                                    </p>
-                                                    <p className="text-sm text-gray-400 leading-relaxed">
+                                                    </div>
+                                                    <div className="text-sm text-gray-400 leading-relaxed">
                                                         {admin ? (
                                                             <textarea
                                                                 value={job.description}
@@ -181,7 +197,7 @@ export default function Journey({ admin }: { admin?: boolean }) {
                                                         ) : (
                                                             job.description
                                                         )}
-                                                    </p>
+                                                    </div>
                                                 </div>
                                                 <div className={dotClassName}></div>
                                                 <div className="md:w-1/2 md:pl-12"></div>
@@ -221,7 +237,7 @@ export default function Journey({ admin }: { admin?: boolean }) {
                                                             job.whiteTitle
                                                         )}
                                                     </h4>
-                                                    <p className="text-brand-accent font-medium mb-2">
+                                                    <div className="text-brand-accent font-medium mb-2">
                                                         {admin ? (
                                                             <AutoSizeInput
                                                                 defaultValue={job.enterprise}
@@ -231,8 +247,8 @@ export default function Journey({ admin }: { admin?: boolean }) {
                                                         ) : (
                                                             job.enterprise
                                                         )}
-                                                    </p>
-                                                    <p className="text-sm text-gray-400 leading-relaxed">
+                                                    </div>
+                                                    <div className="text-sm text-gray-400 leading-relaxed">
                                                         {admin ? (
                                                             <textarea
                                                                 value={job.description}
@@ -243,7 +259,7 @@ export default function Journey({ admin }: { admin?: boolean }) {
                                                         ) : (
                                                             job.description
                                                         )}
-                                                    </p>
+                                                    </div>
                                                 </div>
                                             </>
                                         )}

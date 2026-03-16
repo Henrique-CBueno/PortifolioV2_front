@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import project from "../../types/project";
 import AutoSizeInput from "../ui/AutoSizeInput";
 import DraggableReorderList from "../ui/DraggableReorderList";
+import { setAdminSection } from "../../utils/adminDraft";
 
 interface DescriptionItem {
     id: string;
@@ -46,6 +47,21 @@ export default function About({ admin }: { admin?: boolean }) {
             return next;
         });
     };
+
+    useEffect(() => {
+        if (!admin) return;
+
+        setAdminSection("about", {
+            ...project.about,
+            title: aboutTitle,
+            img: aboutImg,
+            description: descriptions.map((item) => item.value),
+            cards: cards.map((item) => ({
+                emphasis: item.emphasis,
+                helperText: item.helperText,
+            })),
+        });
+    }, [admin, aboutTitle, aboutImg, descriptions, cards]);
 
     return (
         <section className="py-24 bg-brand-surface" data-purpose="about-me-details" id={project.about.id}>

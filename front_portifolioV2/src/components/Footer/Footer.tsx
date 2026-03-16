@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import project from "../../types/project";
 import AutoSizeInput from "../ui/AutoSizeInput";
 import DraggableReorderList from "../ui/DraggableReorderList";
+import { setAdminSection } from "../../utils/adminDraft";
 
 interface SocialLinkItem {
     id: string;
@@ -39,6 +40,20 @@ export default function Footer({ admin }: { admin?: boolean }) {
     const updateSocial = (id: string, field: keyof Omit<SocialLinkItem, "id">, value: string) => {
         setSocialLinks((prev) => prev.map((social) => (social.id === id ? { ...social, [field]: value } : social)));
     };
+
+    useEffect(() => {
+        if (!admin) return;
+
+        setAdminSection("footer", {
+            portfolioName,
+            rightsText,
+            socialLinks: socialLinks.map((social) => ({
+                icon: social.icon,
+                href: social.href,
+                ariaLabel: social.ariaLabel,
+            })),
+        });
+    }, [admin, portfolioName, rightsText, socialLinks]);
 
     return (
         <footer className="py-12 border-t border-white/5 text-center text-gray-500 text-sm" data-purpose="site-footer">

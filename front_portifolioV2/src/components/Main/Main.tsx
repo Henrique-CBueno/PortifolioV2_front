@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import project from "../../types/project";
 import AutoSizeInput from "../ui/AutoSizeInput";
 import DraggableReorderList from "../ui/DraggableReorderList";
+import { setAdminSection } from "../../utils/adminDraft";
 
 interface RotatingWordItem {
     id: string;
@@ -111,6 +112,33 @@ export default function Main({ admin }: { admin?: boolean }) {
         }
     }, [wordIndex, activeRotatingWords.length]);
 
+    useEffect(() => {
+        if (!admin) return;
+
+        setAdminSection("hero", {
+            blueHelperText: heroHelperText,
+            title: {
+                whiteTitle: heroWhiteTitle,
+                rotatingWords: rotatingWords.map((item) => item.value),
+            },
+            subtitle: heroSubtitle,
+            buttons: {
+                blueButton,
+                transparentButton,
+            },
+            code: heroCode,
+        });
+    }, [
+        admin,
+        heroHelperText,
+        heroWhiteTitle,
+        heroSubtitle,
+        rotatingWords,
+        blueButton,
+        transparentButton,
+        heroCode,
+    ]);
+
     return (
         <section
             className="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden"
@@ -218,8 +246,7 @@ export default function Main({ admin }: { admin?: boolean }) {
                         <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                             {admin ? (
                                 <>
-                                    <button
-                                        type="button"
+                                    <div
                                         className="px-8 py-4 bg-brand-accent text-white font-bold rounded-lg transition-all flex items-center justify-center gap-2"
                                     >
                                         <AutoSizeInput
@@ -232,9 +259,8 @@ export default function Main({ admin }: { admin?: boolean }) {
                                             onExtraFieldsChange={(fields) => setBlueButton((prev) => ({ ...prev, href: fields.href ?? prev.href }))}
                                         />
                                         <i className="fa-solid fa-chevron-right text-sm"></i>
-                                    </button>
-                                    <button
-                                        type="button"
+                                    </div>
+                                    <div
                                         className="px-8 py-4 border border-white/20 text-white font-bold rounded-lg transition-all flex items-center justify-center gap-2"
                                     >
                                         <AutoSizeInput
@@ -246,7 +272,7 @@ export default function Main({ admin }: { admin?: boolean }) {
                                             ]}
                                             onExtraFieldsChange={(fields) => setTransparentButton((prev) => ({ ...prev, href: fields.href ?? prev.href }))}
                                         />
-                                    </button>
+                                    </div>
                                 </>
                             ) : (
                                 <>

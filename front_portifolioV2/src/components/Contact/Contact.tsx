@@ -1,12 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import project, { post_portifolio } from "../../types/project";
 import AutoSizeInput from "../ui/AutoSizeInput";
+import { setAdminSection } from "../../utils/adminDraft";
 
 export default function Contact({ admin }: { admin?: boolean }) {
     const [contactData, setContactData] = useState({
         ...project.contact,
         form: { ...project.contact.form },
     });
+
+    useEffect(() => {
+        if (!admin) return;
+
+        setAdminSection("contact", contactData);
+    }, [admin, contactData]);
 
     return (
         <section className="py-24 bg-brand-surface" data-purpose="contact-form-section" id="contact">

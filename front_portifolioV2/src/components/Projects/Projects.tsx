@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import project from "../../types/project";
 import AutoSizeInput from "../ui/AutoSizeInput";
 import DraggableReorderList from "../ui/DraggableReorderList";
+import { setAdminSection } from "../../utils/adminDraft";
 
 interface ProjectItem {
     id: string;
@@ -69,6 +70,38 @@ export default function Projects({ admin }: { admin?: boolean }) {
     const updateProject = (id: string, field: keyof Omit<ProjectItem, "id" | "tags">, value: string) => {
         setProjectsItems((prev) => prev.map((item) => (item.id === id ? { ...item, [field]: value } : item)));
     };
+
+    useEffect(() => {
+        if (!admin) return;
+
+        setAdminSection("projects", {
+            title: projectsTitle,
+            subtitle: projectsSubtitle,
+            githubButtonText,
+            githubButtonHref,
+            caseStudyButtonText,
+            showLessText,
+            showMoreText,
+            items: projectsItems.map((item) => ({
+                imageAlt: item.imageAlt,
+                imageSrc: item.imageSrc,
+                tags: item.tags,
+                title: item.title,
+                description: item.description,
+                href: item.href,
+            })),
+        });
+    }, [
+        admin,
+        projectsTitle,
+        projectsSubtitle,
+        githubButtonText,
+        githubButtonHref,
+        caseStudyButtonText,
+        showLessText,
+        showMoreText,
+        projectsItems,
+    ]);
 
     return (
         <section className="py-24" data-purpose="portfolio-projects" id="projects">

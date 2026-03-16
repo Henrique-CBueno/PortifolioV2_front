@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import project from "../../types/project";
 import AutoSizeInput from "../ui/AutoSizeInput";
 import DraggableReorderList from "../ui/DraggableReorderList";
+import { setAdminSection } from "../../utils/adminDraft";
 
 interface CertificationItem {
     id: string;
@@ -81,6 +82,22 @@ export default function Certifications({ admin }: { admin?: boolean }) {
     ) => {
         setItems((prev) => prev.map((item) => (item.id === id ? { ...item, [field]: value } : item)));
     };
+
+    useEffect(() => {
+        if (!admin) return;
+
+        setAdminSection("certifications", {
+            title: certificationsTitle,
+            items: items.map((item) => ({
+                icon: item.icon,
+                iconClassName: item.iconClassName,
+                iconWrapperClassName: item.iconWrapperClassName,
+                title: item.title,
+                issuer: item.issuer,
+                description: item.description,
+            })),
+        });
+    }, [admin, certificationsTitle, items]);
 
     function scrollToPage(page: number) {
         const cards = getCards();

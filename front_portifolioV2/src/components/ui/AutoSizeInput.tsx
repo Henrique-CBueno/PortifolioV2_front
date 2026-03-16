@@ -29,7 +29,7 @@ export default function AutoSizeInput({
     );
     const mirrorRef = useRef<HTMLSpanElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
-    const containerRef = useRef<HTMLDivElement>(null);
+    const containerRef = useRef<HTMLSpanElement>(null);
 
     const resizeInput = () => {
         if (!mirrorRef.current || !inputRef.current) return;
@@ -63,7 +63,7 @@ export default function AutoSizeInput({
     const hasExtraFields = extraFields && extraFields.length > 0;
 
     return (
-        <div
+        <span
             ref={containerRef}
             className={`relative inline-flex items-center ${formOpen ? "z-120" : "z-0 focus-within:z-120"}`}
         >
@@ -98,7 +98,7 @@ export default function AutoSizeInput({
                 </button>
             )}
             {formOpen && hasExtraFields && (
-                <div className="absolute top-full left-0 mt-2 z-140 bg-gray-800 border border-gray-700 rounded-lg p-3 shadow-xl min-w-48 flex flex-col gap-2">
+                <span className="absolute top-full left-0 mt-2 z-140 bg-gray-800 border border-gray-700 rounded-lg p-3 shadow-xl min-w-48 flex flex-col gap-2">
                     {extraFields!.map((field) => (
                         <label key={field.key} className="flex flex-col gap-1 text-xs text-gray-400">
                             {field.label}
@@ -114,8 +114,8 @@ export default function AutoSizeInput({
                             />
                         </label>
                     ))}
-                </div>
+                </span>
             )}
-        </div>
+        </span>
     );
 }

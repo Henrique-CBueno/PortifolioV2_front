@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import project from "../../types/project";
 import AutoSizeInput from "../ui/AutoSizeInput";
 import DraggableReorderList from "../ui/DraggableReorderList";
+import { setAdminSection } from "../../utils/adminDraft";
 
 interface StackItem {
     id: string;
@@ -50,6 +51,22 @@ export default function Stacks({ admin }: { admin?: boolean }) {
     const updateStack = (id: string, field: keyof Omit<StackItem, "id">, value: string) => {
         setStackItems((prev) => prev.map((stack) => (stack.id === id ? { ...stack, [field]: value } : stack)));
     };
+
+    useEffect(() => {
+        if (!admin) return;
+
+        setAdminSection("stacks", {
+            title: stacksTitle,
+            showLessText,
+            showMoreText,
+            items: stackItems.map((item) => ({
+                name: item.name,
+                icon: item.icon,
+                iconColor: item.iconColor,
+                helperText: item.helperText,
+            })),
+        });
+    }, [admin, stacksTitle, showLessText, showMoreText, stackItems]);
 
     return (
         <section className="py-24 bg-brand-surface" data-purpose="technology-stack" id="stack">
@@ -115,13 +132,13 @@ export default function Stacks({ admin }: { admin?: boolean }) {
                                             }}
                                         />
                                     </h4>
-                                    <p className="text-xs text-gray-500 mt-2">
+                                    <div className="text-xs text-gray-500 mt-2">
                                         <AutoSizeInput
                                             defaultValue={stack.helperText}
                                             className="text-xs text-gray-500"
                                             onChange={(value) => updateStack(stack.id, "helperText", value)}
                                         />
-                                    </p>
+                                    </div>
                                 </>
                             )}
                         />
