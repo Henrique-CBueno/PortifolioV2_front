@@ -31,11 +31,23 @@ export default function AutoSizeInput({
     const inputRef = useRef<HTMLInputElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
 
+    const resizeInput = () => {
+        if (!mirrorRef.current || !inputRef.current) return;
+
+        const measuredWidth = mirrorRef.current.getBoundingClientRect().width;
+        const extraPadding = 12;
+        inputRef.current.style.width = `${Math.ceil(measuredWidth + extraPadding)}px`;
+    };
+
     useEffect(() => {
-        if (mirrorRef.current && inputRef.current) {
-            inputRef.current.style.width = mirrorRef.current.offsetWidth + 4 + "px";
-        }
-    }, [value]);
+        resizeInput();
+    }, [value, className]);
+
+    useEffect(() => {
+        const onResize = () => resizeInput();
+        window.addEventListener("resize", onResize);
+        return () => window.removeEventListener("resize", onResize);
+    }, []);
 
     useEffect(() => {
         if (!formOpen) return;
@@ -76,7 +88,7 @@ export default function AutoSizeInput({
                 <button
                     type="button"
                     onClick={() => setFormOpen((v) => !v)}
-                    className={`absolute left-2 -top-6 h-6 w-6 rounded-full text-white/70 ring-1 ring-white/25 transition-all hover:text-white hover:ring-white/55 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent/60 ${formOpen ? "bg-brand-accent/25" : "bg-brand-dark/95"}`}
+                    className={`absolute -left-1 -top-6 h-6 w-6 rounded-full text-white/70 ring-1 ring-white/25 transition-all hover:text-white hover:ring-white/55 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent/60 ${formOpen ? "bg-brand-accent/25" : "bg-brand-dark/95"}`}
                     title="Editar campos"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mx-auto">
