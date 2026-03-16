@@ -1,4 +1,4 @@
-import project from "../../types/project";
+import project, { post_portifolio } from "../../types/project";
 
 export default function Contact() {
     const contactData = project.contact;
@@ -32,7 +32,8 @@ export default function Contact() {
                     </div>
                     <button
                         className="w-full py-4 bg-brand-accent text-white font-bold rounded-xl hover:bg-blue-600 transition-all transform active:scale-[0.98]"
-                        type="submit">
+                        type="submit" onClick={() => {
+                            post_portifolio(project)}}>
                         {contactData.form.submitButtonText}
                     </button>
                 </form>

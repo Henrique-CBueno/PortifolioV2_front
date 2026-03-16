@@ -1,7 +1,8 @@
+import axios from "axios";
 import fotoHenrique from "../../public/avatar-2-semBG.png";
 
 const project = {
-    id: 1,
+    id: "br",
     name: "Portfólio Henrique Bueno",
     description: "Portfólio profissional de arquitetura de software, cloud e desenvolvimento fullstack.",
     header: {
@@ -324,6 +325,12 @@ const project = {
         ]
     }
 }
+
+export const post_portifolio = async (portifolio: Project) => {
+    console.log(project)
+    const response = axios.post("http://localhost:1910/portifolio", portifolio)
+    console.log(response)
+} 
 
 
 export type Project = typeof project;
