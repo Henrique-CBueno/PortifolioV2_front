@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import project from "../../types/project";
 import AutoSizeInput from "../ui/AutoSizeInput";
 import DraggableReorderList from "../ui/DraggableReorderList";
-import { setAdminSection } from "../../utils/adminDraft";
+import { removeAdminImageUpload, setAdminImageUpload, setAdminSection } from "../../utils/adminDraft";
 
 interface DescriptionItem {
     id: string;
@@ -91,7 +91,10 @@ export default function About({ admin }: { admin?: boolean }) {
                                             <input
                                                 type="text"
                                                 value={aboutImg}
-                                                onChange={(e) => setAboutImg(e.target.value)}
+                                                onChange={(e) => {
+                                                    setAboutImg(e.target.value);
+                                                    removeAdminImageUpload("about-main");
+                                                }}
                                                 className="bg-gray-900 border border-gray-600 rounded px-2 py-1 text-gray-200 text-sm outline-none focus:border-blue-500 transition-colors"
                                                 placeholder="https://..."
                                             />
@@ -105,6 +108,11 @@ export default function About({ admin }: { admin?: boolean }) {
                                                     const file = e.target.files?.[0];
                                                     if (!file) return;
                                                     setAboutImg(URL.createObjectURL(file));
+                                                    setAdminImageUpload("about-main", {
+                                                        section: "about",
+                                                        file,
+                                                        name: "1",
+                                                    });
                                                 }}
                                                 className="text-xs text-gray-300"
                                             />

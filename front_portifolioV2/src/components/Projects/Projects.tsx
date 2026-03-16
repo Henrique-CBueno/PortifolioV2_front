@@ -2,7 +2,12 @@ import { useEffect, useState } from "react";
 import project from "../../types/project";
 import AutoSizeInput from "../ui/AutoSizeInput";
 import DraggableReorderList from "../ui/DraggableReorderList";
-import { setAdminSection } from "../../utils/adminDraft";
+import {
+    removeAdminImageUpload,
+    setAdminImageUpload,
+    setAdminSection,
+    syncAdminImageUploadNames,
+} from "../../utils/adminDraft";
 
 interface ProjectItem {
     id: string;
@@ -71,6 +76,16 @@ export default function Projects({ admin }: { admin?: boolean }) {
         setProjectsItems((prev) => prev.map((item) => (item.id === id ? { ...item, [field]: value } : item)));
     };
 
+    const removeProject = (id: string) => {
+        setProjectsItems((prev) => (prev.length <= 1 ? prev : prev.filter((item) => item.id !== id)));
+        removeAdminImageUpload(id);
+    };
+
+    const getProjectOrderName = (id: string) => {
+        const index = projectsItems.findIndex((item) => item.id === id);
+        return String(index + 1);
+    };
+
     useEffect(() => {
         if (!admin) return;
 
@@ -102,6 +117,15 @@ export default function Projects({ admin }: { admin?: boolean }) {
         showMoreText,
         projectsItems,
     ]);
+
+    useEffect(() => {
+        if (!admin) return;
+
+        syncAdminImageUploadNames(
+            "projects",
+            projectsItems.map((item) => item.id)
+        );
+    }, [admin, projectsItems]);
 
     return (
         <section className="py-24" data-purpose="portfolio-projects" id="projects">
@@ -174,7 +198,7 @@ export default function Projects({ admin }: { admin?: boolean }) {
                                 <>
                                     <button
                                         type="button"
-                                        onClick={() => setProjectsItems((prev) => (prev.length <= 1 ? prev : prev.filter((p) => p.id !== item.id)))}
+                                        onClick={() => removeProject(item.id)}
                                         className="absolute top-2 right-2 z-20 h-6 w-6 rounded-full bg-brand-dark/95 text-xs text-red-300/85 ring-1 ring-white/25 transition-all hover:text-red-200 hover:ring-white/45"
                                         title="Remover projeto"
                                     >
@@ -204,7 +228,10 @@ export default function Projects({ admin }: { admin?: boolean }) {
                                                     <input
                                                         type="text"
                                                         value={item.imageSrc}
-                                                        onChange={(e) => updateProject(item.id, "imageSrc", e.target.value)}
+                                                        onChange={(e) => {
+                                                            updateProject(item.id, "imageSrc", e.target.value);
+                                                            removeAdminImageUpload(item.id);
+                                                        }}
                                                         className="bg-gray-900 border border-gray-600 rounded px-2 py-1 text-gray-200 text-sm outline-none focus:border-blue-500 transition-colors"
                                                     />
                                                 </label>
@@ -226,6 +253,11 @@ export default function Projects({ admin }: { admin?: boolean }) {
                                                             const file = e.target.files?.[0];
                                                             if (!file) return;
                                                             updateProject(item.id, "imageSrc", URL.createObjectURL(file));
+                                                            setAdminImageUpload(item.id, {
+                                                                section: "projects",
+                                                                file,
+                                                                name: getProjectOrderName(item.id),
+                                                            });
                                                         }}
                                                         className="text-xs text-gray-300"
                                                     />

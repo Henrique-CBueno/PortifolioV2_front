@@ -9,15 +9,17 @@ import Main from "../components/Main/Main";
 import MouseGlow from "../components/MouseGlow";
 import Projects from "../components/Projects/Projects";
 import Stacks from "../components/Stacks/Stacks";
-import project, { post_portifolio } from "../types/project";
+import project, { post_portifolio, post_portifolio_imgs } from "../types/project";
 import {
     clearAdminDraftDirtyFlag,
+    getAdminImageUploads,
     getAdminDraftProject,
     isAdminDraftDirty,
 } from "../utils/adminDraft";
 
 export default function AdminPage() {
     const [showSaveButton, setShowSaveButton] = useState(false);
+    const [isSaving, setIsSaving] = useState(false);
 
     useEffect(() => {
         const syncDirtyState = () => setShowSaveButton(isAdminDraftDirty());
@@ -30,10 +32,26 @@ export default function AdminPage() {
         };
     }, []);
 
-    const handleSaveDraft = () => {
+    const handleSaveDraft = async () => {
+        if (isSaving) return;
+
+        setIsSaving(true);
         const fullProjectPayload = getAdminDraftProject(project);
-        post_portifolio(fullProjectPayload);
-        clearAdminDraftDirtyFlag();
+        const changedImages = getAdminImageUploads();
+
+        try {
+            await post_portifolio(fullProjectPayload);
+
+            const projectId = String(fullProjectPayload.id ?? project.id ?? "");
+
+            if (projectId && changedImages.length > 0) {
+                await post_portifolio_imgs(projectId, changedImages);
+            }
+
+            clearAdminDraftDirtyFlag();
+        } finally {
+            setIsSaving(false);
+        }
     };
 
     return (
@@ -52,9 +70,10 @@ export default function AdminPage() {
                 <button
                     type="button"
                     onClick={handleSaveDraft}
+                    disabled={isSaving}
                     className="fixed bottom-6 right-6 z-[120] rounded-full bg-brand-accent px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-accent/30 transition-all hover:bg-blue-600"
                 >
-                    Salvar
+                    {isSaving ? "Salvando..." : "Salvar"}
                 </button>
             )}
         </div>

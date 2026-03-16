@@ -1,6 +1,6 @@
-import axios from "axios";
 import { project } from "../projectStore";
 import post from "../ACTIONS/POST/POST";
+import type { ChangeImgDTO } from "../ACTIONS/POST/POST";
 
 // const project = {
 //     id: "br",
@@ -329,6 +329,10 @@ import post from "../ACTIONS/POST/POST";
 
 export const post_portifolio = async (portifolio: Project) => {
     await post.postPortifolio(portifolio)
+}
+
+export const post_portifolio_imgs = async (id: string, imgs: ChangeImgDTO[]) => {
+    await post.postPortifolioImages(id, imgs)
 }
 
 export type Project = Record<string, any>;
