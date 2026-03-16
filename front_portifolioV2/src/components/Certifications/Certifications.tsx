@@ -1,11 +1,41 @@
 import { useRef, useState, useEffect } from "react";
 import project from "../../types/project";
+import AutoSizeInput from "../ui/AutoSizeInput";
+import DraggableReorderList from "../ui/DraggableReorderList";
 
-export default function Certifications() {
+interface CertificationItem {
+    id: string;
+    icon: string;
+    iconClassName: string;
+    iconWrapperClassName: string;
+    title: string;
+    issuer: string;
+    description: string;
+}
+
+const makeCertificationId = () => `cert-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
+
+export default function Certifications({ admin }: { admin?: boolean }) {
     const sliderRef = useRef<HTMLDivElement | null>(null);
     const [activePage, setActivePage] = useState(0);
     const [cardsPerView, setCardsPerView] = useState(1);
-    const certificationsData = project.certifications;
+    const [certificationsTitle, setCertificationsTitle] = useState(project.certifications.title);
+    const [items, setItems] = useState<CertificationItem[]>(
+        project.certifications.items.map((item) => ({
+            id: makeCertificationId(),
+            icon: item.icon,
+            iconClassName: item.iconClassName,
+            iconWrapperClassName: item.iconWrapperClassName,
+            title: item.title,
+            issuer: item.issuer,
+            description: item.description,
+        }))
+    );
+
+    const certificationsData = {
+        title: certificationsTitle,
+        items,
+    };
 
     function getCards() {
         const slider = sliderRef.current;
@@ -33,6 +63,24 @@ export default function Certifications() {
     }, []);
 
     const totalPages = Math.ceil(certificationsData.items.length / cardsPerView);
+
+    const moveCertification = (fromIndex: number, toIndex: number) => {
+        if (fromIndex === toIndex) return;
+        setItems((prev) => {
+            const next = [...prev];
+            const [moved] = next.splice(fromIndex, 1);
+            next.splice(toIndex, 0, moved);
+            return next;
+        });
+    };
+
+    const updateCertification = (
+        id: string,
+        field: keyof Omit<CertificationItem, "id">,
+        value: string
+    ) => {
+        setItems((prev) => prev.map((item) => (item.id === id ? { ...item, [field]: value } : item)));
+    };
 
     function scrollToPage(page: number) {
         const cards = getCards();
@@ -91,7 +139,15 @@ export default function Certifications() {
             <div className="max-w-7xl mx-auto px-6">
                 <div className="mb-12">
                     <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                        {certificationsData.title}
+                        {admin ? (
+                            <AutoSizeInput
+                                defaultValue={certificationsTitle}
+                                className="text-3xl md:text-4xl font-bold text-white"
+                                onChange={setCertificationsTitle}
+                            />
+                        ) : (
+                            certificationsData.title
+                        )}
                     </h2>
                     <div className="h-1.5 w-20 bg-brand-accent rounded-full"></div>
                 </div>
@@ -102,35 +158,113 @@ export default function Certifications() {
                         ref={sliderRef}
                         onScroll={handleSliderScroll}
                     >
-                        {certificationsData.items.map((certification) => (
-                            <div
-                                key={certification.title}
-                                data-card
-                                className="flex-none w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] snap-center"
-                            >
-                                <div className="p-8 bg-brand-surface border border-white/5 rounded-2xl hover:border-brand-accent/50 transition-all group h-full flex flex-col">
-                                    <div
-                                        className={`w-16 h-16 ${certification.iconWrapperClassName} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}
-                                    >
-                                        <i
-                                            className={`fa-solid ${certification.icon} text-3xl ${certification.iconClassName}`}
-                                        ></i>
+                        {admin ? (
+                            <DraggableReorderList
+                                items={certificationsData.items}
+                                getKey={(certification) => certification.id}
+                                onReorder={moveCertification}
+                                containerClassName="contents"
+                                itemClassName={(state) =>
+                                    `flex-none w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] snap-center transition-all duration-200 ${
+                                        state.isDragging
+                                            ? "opacity-70"
+                                            : state.isDragOver
+                                                ? "ring-1 ring-brand-accent/50 rounded-2xl"
+                                                : ""
+                                    }`
+                                }
+                                renderContent={(certification) => (
+                                    <div data-card className="p-8 bg-brand-surface border border-white/5 rounded-2xl hover:border-brand-accent/50 transition-all group h-full flex flex-col relative overflow-visible">
+                                        <button
+                                            type="button"
+                                            onClick={() =>
+                                                setItems((prev) => {
+                                                    if (prev.length <= 1) return prev;
+                                                    return prev.filter((item) => item.id !== certification.id);
+                                                })
+                                            }
+                                            className="absolute top-2 right-2 h-6 w-6 rounded-full bg-brand-dark/95 text-xs text-red-300/85 ring-1 ring-white/25 transition-all hover:text-red-200 hover:ring-white/45"
+                                            title="Remover certificacao"
+                                        >
+                                            x
+                                        </button>
+
+                                        <div
+                                            className={`w-16 h-16 ${certification.iconWrapperClassName} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}
+                                        >
+                                            <i
+                                                className={`fa-solid ${certification.icon} text-3xl ${certification.iconClassName}`}
+                                            ></i>
+                                        </div>
+
+                                        <h4 className="text-xl font-bold text-white mb-2">
+                                            <AutoSizeInput
+                                                defaultValue={certification.title}
+                                                className="text-xl font-bold text-white"
+                                                onChange={(value) => updateCertification(certification.id, "title", value)}
+                                                extraFields={[
+                                                    { key: "icon", label: "Icon", defaultValue: certification.icon },
+                                                    { key: "iconClassName", label: "Icon Color Class", defaultValue: certification.iconClassName },
+                                                    { key: "iconWrapperClassName", label: "Icon Wrapper Class", defaultValue: certification.iconWrapperClassName },
+                                                ]}
+                                                onExtraFieldsChange={(fields) => {
+                                                    updateCertification(certification.id, "icon", fields.icon ?? certification.icon);
+                                                    updateCertification(certification.id, "iconClassName", fields.iconClassName ?? certification.iconClassName);
+                                                    updateCertification(certification.id, "iconWrapperClassName", fields.iconWrapperClassName ?? certification.iconWrapperClassName);
+                                                }}
+                                            />
+                                        </h4>
+
+                                        <p className="text-brand-accent text-sm font-medium mb-4 uppercase tracking-wider">
+                                            <AutoSizeInput
+                                                defaultValue={certification.issuer}
+                                                className="text-brand-accent text-sm font-medium uppercase tracking-wider"
+                                                onChange={(value) => updateCertification(certification.id, "issuer", value)}
+                                            />
+                                        </p>
+
+                                        <p className="text-gray-400 text-sm leading-relaxed grow">
+                                            <textarea
+                                                value={certification.description}
+                                                onChange={(e) => updateCertification(certification.id, "description", e.target.value)}
+                                                className="w-full resize-none rounded-md border border-white/10 bg-transparent px-2 py-1 text-gray-300 text-sm outline-none focus:border-brand-accent/60"
+                                                rows={4}
+                                            />
+                                        </p>
                                     </div>
+                                )}
+                            />
+                        ) : (
+                            certificationsData.items.map((certification) => (
+                                <div
+                                    key={certification.id}
+                                    data-card
+                                    className="flex-none w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] snap-center"
+                                >
+                                    <div className="p-8 bg-brand-surface border border-white/5 rounded-2xl hover:border-brand-accent/50 transition-all group h-full flex flex-col">
+                                        <div
+                                            className={`w-16 h-16 ${certification.iconWrapperClassName} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}
+                                        >
+                                            <i
+                                                className={`fa-solid ${certification.icon} text-3xl ${certification.iconClassName}`}
+                                            ></i>
+                                        </div>
 
-                                    <h4 className="text-xl font-bold text-white mb-2">
-                                        {certification.title}
-                                    </h4>
+                                        <h4 className="text-xl font-bold text-white mb-2">
+                                            {certification.title}
+                                        </h4>
 
-                                    <p className="text-brand-accent text-sm font-medium mb-4 uppercase tracking-wider">
-                                        {certification.issuer}
-                                    </p>
+                                        <p className="text-brand-accent text-sm font-medium mb-4 uppercase tracking-wider">
+                                            {certification.issuer}
+                                        </p>
 
-                                    <p className="text-gray-400 text-sm leading-relaxed grow">
-                                        {certification.description}
-                                    </p>
+                                        <p className="text-gray-400 text-sm leading-relaxed grow">
+                                            {certification.description}
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))
+                        )}
                     </div>
 
                     {/* CONTROLES */}
@@ -151,6 +285,30 @@ export default function Certifications() {
                             >
                                 <i className="fa-solid fa-arrow-right"></i>
                             </button>
+
+                            {admin && (
+                                <button
+                                    type="button"
+                                    onClick={() =>
+                                        setItems((prev) => [
+                                            ...prev,
+                                            {
+                                                id: makeCertificationId(),
+                                                icon: "fa-medal",
+                                                iconClassName: "text-brand-accent",
+                                                iconWrapperClassName: "bg-brand-accent/10",
+                                                title: "Nova certificacao",
+                                                issuer: "Novo emissor",
+                                                description: "Descricao da certificacao",
+                                            },
+                                        ])
+                                    }
+                                    className="p-4 rounded-full border border-white/10 hover:border-brand-accent hover:text-brand-accent transition-all"
+                                    title="Adicionar certificacao"
+                                >
+                                    <i className="fa-solid fa-plus"></i>
+                                </button>
+                            )}
                         </div>
 
                         {/* INDICADORES */}
