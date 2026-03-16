@@ -9,7 +9,7 @@ import Main from "../components/Main/Main";
 import MouseGlow from "../components/MouseGlow";
 import Projects from "../components/Projects/Projects";
 import Stacks from "../components/Stacks/Stacks";
-import project from "../types/project";
+import project, { post_portifolio } from "../types/project";
 import {
     clearAdminDraftDirtyFlag,
     getAdminDraftProject,
@@ -32,7 +32,7 @@ export default function AdminPage() {
 
     const handleSaveDraft = () => {
         const fullProjectPayload = getAdminDraftProject(project);
-        console.log(fullProjectPayload);
+        post_portifolio(fullProjectPayload);
         clearAdminDraftDirtyFlag();
     };
 
