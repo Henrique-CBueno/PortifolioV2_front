@@ -22,7 +22,7 @@ export default function AutoSizeInput({
     extraFields,
     onExtraFieldsChange,
 }: AutoSizeInputProps) {
-    const [value, setValue] = useState(defaultValue);
+    const [value, setValue] = useState(defaultValue ?? "");
     const [formOpen, setFormOpen] = useState(false);
     const [extraValues, setExtraValues] = useState<Record<string, string>>(
         () => Object.fromEntries((extraFields ?? []).map((f) => [f.key, f.defaultValue ?? ""]))
@@ -42,6 +42,10 @@ export default function AutoSizeInput({
     useEffect(() => {
         resizeInput();
     }, [value, className]);
+
+    useEffect(() => {
+        setValue(defaultValue ?? "");
+    }, [defaultValue]);
 
     useEffect(() => {
         const onResize = () => resizeInput();
@@ -79,8 +83,9 @@ export default function AutoSizeInput({
                 type="text"
                 value={value}
                 onChange={(e) => {
-                    setValue(e.target.value);
-                    onChange?.(e.target.value);
+                    const nextValue = e.target.value ?? "";
+                    setValue(nextValue);
+                    onChange?.(nextValue);
                 }}
                 className={`min-w-4 bg-transparent outline-none ${className}`}
             />

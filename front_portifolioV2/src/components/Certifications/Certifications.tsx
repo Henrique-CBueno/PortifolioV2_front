@@ -14,22 +14,37 @@ interface CertificationItem {
     description: string;
 }
 
+interface CertificationSeedItem {
+    icon?: string;
+    iconClassName?: string;
+    iconWrapperClassName?: string;
+    title?: string;
+    issuer?: string;
+    description?: string;
+}
+
 const makeCertificationId = () => `cert-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
+
+const defaultCertificationData = {
+    title: "",
+    items: [] as CertificationSeedItem[],
+};
 
 export default function Certifications({ admin }: { admin?: boolean }) {
     const sliderRef = useRef<HTMLDivElement | null>(null);
     const [activePage, setActivePage] = useState(0);
     const [cardsPerView, setCardsPerView] = useState(1);
-    const [certificationsTitle, setCertificationsTitle] = useState(project.certifications.title);
+    const certifications = project?.certifications ?? defaultCertificationData;
+    const [certificationsTitle, setCertificationsTitle] = useState(certifications.title ?? "");
     const [items, setItems] = useState<CertificationItem[]>(
-        project.certifications.items.map((item) => ({
+        (certifications.items ?? []).map((item: CertificationSeedItem) => ({
             id: makeCertificationId(),
-            icon: item.icon,
-            iconClassName: item.iconClassName,
-            iconWrapperClassName: item.iconWrapperClassName,
-            title: item.title,
-            issuer: item.issuer,
-            description: item.description,
+            icon: item.icon ?? "",
+            iconClassName: item.iconClassName ?? "",
+            iconWrapperClassName: item.iconWrapperClassName ?? "",
+            title: item.title ?? "",
+            issuer: item.issuer ?? "",
+            description: item.description ?? "",
         }))
     );
 

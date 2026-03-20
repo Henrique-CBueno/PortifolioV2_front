@@ -11,19 +11,32 @@ interface SocialLinkItem {
     ariaLabel: string;
 }
 
+interface SocialLinkSeedItem {
+    icon?: string;
+    href?: string;
+    ariaLabel?: string;
+}
+
 const makeSocialId = () => `social-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
+
+const defaultFooterData = {
+    portfolioName: "",
+    rightsText: "",
+    socialLinks: [] as SocialLinkSeedItem[],
+};
 
 export default function Footer({ admin }: { admin?: boolean }) {
 
     const currentYear = new Date().getFullYear();
-    const [portfolioName, setPortfolioName] = useState(project.footer.portfolioName);
-    const [rightsText, setRightsText] = useState(project.footer.rightsText);
+    const footer = project?.footer ?? defaultFooterData;
+    const [portfolioName, setPortfolioName] = useState(footer.portfolioName ?? "");
+    const [rightsText, setRightsText] = useState(footer.rightsText ?? "");
     const [socialLinks, setSocialLinks] = useState<SocialLinkItem[]>(
-        project.footer.socialLinks.map((social) => ({
+        (footer.socialLinks ?? []).map((social: SocialLinkSeedItem) => ({
             id: makeSocialId(),
-            icon: social.icon,
-            href: social.href,
-            ariaLabel: social.ariaLabel,
+            icon: social.icon ?? "",
+            href: social.href ?? "",
+            ariaLabel: social.ariaLabel ?? "",
         }))
     );
 
