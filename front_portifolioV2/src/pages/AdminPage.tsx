@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import About from "../components/About/About";
 import Certifications from "../components/Certifications/Certifications";
 import Contact from "../components/Contact/Contact";
@@ -16,8 +17,10 @@ import {
     getAdminDraftProject,
     isAdminDraftDirty,
 } from "../utils/adminDraft";
+import { logout } from "../utils/auth";
 
 export default function AdminPage() {
+    const navigate = useNavigate();
     const [showSaveButton, setShowSaveButton] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
 
@@ -54,6 +57,11 @@ export default function AdminPage() {
         }
     };
 
+    const handleLogout = () => {
+        logout();
+        navigate("/login", { replace: true });
+    };
+
     return (
         <div className="text-gray-300 font-sans selection:bg-blue-500 selection:text-white overflow-x-hidden relative">
             <MouseGlow />
@@ -66,12 +74,19 @@ export default function AdminPage() {
             <Certifications admin={true} />
             <Contact admin={true} />
             <Footer admin={true} />
+            <button
+                type="button"
+                onClick={handleLogout}
+                className="fixed right-6 top-24 z-120 rounded-full border border-white/15 bg-slate-900/80 px-4 py-2 text-sm font-medium text-slate-100 transition hover:border-white/30 hover:bg-slate-800"
+            >
+                Sair
+            </button>
             {showSaveButton && (
                 <button
                     type="button"
                     onClick={handleSaveDraft}
                     disabled={isSaving}
-                    className="fixed bottom-6 right-6 z-[120] rounded-full bg-brand-accent px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-accent/30 transition-all hover:bg-blue-600"
+                    className="fixed bottom-6 right-6 z-120 rounded-full bg-brand-accent px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-accent/30 transition-all hover:bg-blue-600"
                 >
                     {isSaving ? "Salvando..." : "Salvar"}
                 </button>

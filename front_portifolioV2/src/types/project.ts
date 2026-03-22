@@ -1,6 +1,7 @@
 import { project } from "../projectStore";
 import post from "../ACTIONS/POST/POST";
 import type { ChangeImgDTO } from "../ACTIONS/POST/POST";
+import type { ContactEmailDTO } from "../ACTIONS/POST/POST";
 
 // const project = {
 //     id: "br",
@@ -333,6 +334,10 @@ export const post_portifolio = async (portifolio: Project) => {
 
 export const post_portifolio_imgs = async (id: string, imgs: ChangeImgDTO[]) => {
     await post.postPortifolioImages(id, imgs)
+}
+
+export const post_contact_email = async (payload: ContactEmailDTO) => {
+    await post.sendContactEmail(payload)
 }
 
 export type Project = Record<string, any>;

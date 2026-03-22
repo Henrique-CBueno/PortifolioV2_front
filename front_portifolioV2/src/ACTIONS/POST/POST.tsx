@@ -1,5 +1,6 @@
 import axios from "axios";
 import type { Project } from "../../types/project";
+import { getAuthorizationHeader } from "../../utils/auth";
 
 export interface ChangeImgDTO {
     section: string;
@@ -7,10 +8,22 @@ export interface ChangeImgDTO {
     name: string;
 }
 
+export interface ContactEmailDTO {
+    name: string;
+    email: string;
+    details: string;
+}
+
 class Post {
 
+    async sendContactEmail(payload: ContactEmailDTO) {
+        await axios.post(`${import.meta.env.VITE_ROOT_URL}/contact`, payload)
+    }
+
     async postPortifolio(project: Project) {
-        await axios.post(`${import.meta.env.VITE_ROOT_URL}/portifolio`, project)
+        await axios.post(`${import.meta.env.VITE_ROOT_URL}/portifolio`, project, {
+            headers: getAuthorizationHeader(),
+        })
     }
 
     async postPortifolioImages(id: string, imgs: ChangeImgDTO[]) {
@@ -22,7 +35,9 @@ class Post {
             formData.append(`imgs[${index}].file`, img.file);
         });
 
-        await axios.post(`${import.meta.env.VITE_ROOT_URL}/portifolio/${id}/img`, formData);
+        await axios.post(`${import.meta.env.VITE_ROOT_URL}/portifolio/${id}/img`, formData, {
+            headers: getAuthorizationHeader(),
+        });
     }
 }
 

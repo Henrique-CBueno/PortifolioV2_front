@@ -5,8 +5,12 @@ import './index.css'
 import App from './App.tsx'
 import get from './ACTIONS/GET/GET.tsx'
 import { setProject } from './projectStore.ts'
+import { hydrateAuthSession, setupAuthInterceptor } from './utils/auth.ts'
 
 console.log("start")
+
+hydrateAuthSession()
+setupAuthInterceptor()
 
 const project = await get.fetchProject("br")
 setProject(project)
