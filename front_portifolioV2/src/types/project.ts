@@ -3,6 +3,146 @@ import post from "../ACTIONS/POST/POST";
 import type { ChangeImgDTO } from "../ACTIONS/POST/POST";
 import type { ContactEmailDTO } from "../ACTIONS/POST/POST";
 
+export interface HeaderSection {
+    name: string;
+    href: string;
+}
+
+export interface AboutCard {
+    emphasis: string;
+    helperText: string;
+}
+
+export interface JourneyJob {
+    startTime: string;
+    endTime: string | null;
+    whiteTitle: string;
+    enterprise: string;
+    description: string;
+}
+
+export interface Stack {
+    name: string;
+    icon: string;
+    iconColor: string;
+    helperText: string;
+}
+
+export interface ProjectItem {
+    imageAlt: string;
+    imageSrc: string;
+    tags: string[];
+    title: string;
+    description: string;
+    href: string;
+}
+
+export interface CertificationItem {
+    icon: string;
+    iconClassName: string;
+    iconWrapperClassName: string;
+    title: string;
+    issuer: string;
+    description: string;
+}
+
+export interface SocialLink {
+    icon: string;
+    href: string;
+    ariaLabel: string;
+}
+
+export interface Project {
+    id?: string | number;
+    name?: string;
+    description?: string;
+    header: {
+        whiteTitle: string;
+        sections: HeaderSection[];
+    };
+    hero: {
+        blueHelperText: string;
+        title: {
+            whiteTitle: string;
+            rotatingWords: string[];
+        };
+        subtitle: string;
+        buttons: {
+            blueButton: { text: string; href: string };
+            transparentButton: { text: string; href: string };
+        };
+        code: {
+            archiveName: string;
+            snippet: {
+                serviceAnnotation: string;
+                classKeyword: string;
+                className: string;
+                infrastructureComment: string;
+                autowiredAnnotation: string;
+                awsField: string;
+                deploySignature: string;
+                deployCallPrefix: string;
+                region: string;
+                deployCallSuffix: string;
+                uptimeComment: string;
+            };
+            icon: string;
+            iconColor: string;
+        };
+    };
+    about: {
+        id: string;
+        img: string;
+        title: string;
+        description: string[];
+        cards: AboutCard[];
+    };
+    journey: {
+        title: string;
+        jobs: JourneyJob[];
+    };
+    stacks: {
+        title: string;
+        showLessText: string;
+        showMoreText: string;
+        items: Stack[];
+    };
+    projects: {
+        title: string;
+        subtitle: string;
+        githubButtonText: string;
+        githubButtonHref: string;
+        caseStudyButtonText: string;
+        showLessText: string;
+        showMoreText: string;
+        items: ProjectItem[];
+    };
+    certifications: {
+        title: string;
+        items: CertificationItem[];
+    };
+    contact: {
+        title: string;
+        subtitle: string;
+        form: {
+            nameLabel: string;
+            namePlaceholder: string;
+            emailLabel: string;
+            emailPlaceholder: string;
+            detailsLabel: string;
+            detailsPlaceholder: string;
+            submitButtonText: string;
+        };
+    };
+    footer: {
+        portfolioName: string;
+        rightsText: string;
+        socialLinks: SocialLink[];
+    };
+}
+
+const typedProject = project as Project;
+
 // const project = {
 //     id: "br",
 //     name: "Portfólio Henrique Bueno",
@@ -340,5 +480,4 @@ export const post_contact_email = async (payload: ContactEmailDTO) => {
     await post.sendContactEmail(payload)
 }
 
-export type Project = Record<string, any>;
-export { project as default };
+export { typedProject as default };

@@ -1,5 +1,7 @@
-export let project: any = null;
+import type { Project } from "./types/project";
 
-export const setProject = (p: any) => {
+export let project: Project = {} as Project;
+
+export const setProject = (p: Project) => {
     project = p;
 }
