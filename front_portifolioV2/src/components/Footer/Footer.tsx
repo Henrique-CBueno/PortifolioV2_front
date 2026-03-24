@@ -3,6 +3,7 @@ import project from "../../types/project";
 import AutoSizeInput from "../ui/AutoSizeInput";
 import DraggableReorderList from "../ui/DraggableReorderList";
 import { setAdminSection } from "../../utils/adminDraft";
+import { normalizeHref, shouldOpenInNewTab } from "../../utils/url";
 
 interface SocialLinkItem {
     id: string;
@@ -98,7 +99,9 @@ export default function Footer({ admin }: { admin?: boolean }) {
                                 </button>
                                 <a
                                     className="hover:text-white transition-colors"
-                                    href={social.href}
+                                    href={normalizeHref(social.href)}
+                                    target={shouldOpenInNewTab(social.href) ? "_blank" : undefined}
+                                    rel={shouldOpenInNewTab(social.href) ? "noopener noreferrer" : undefined}
                                     aria-label={social.ariaLabel}
                                 >
                                     <i className={`${social.icon} text-xl`}></i>
@@ -161,7 +164,9 @@ export default function Footer({ admin }: { admin?: boolean }) {
                             <a
                                 key={social.id}
                                 className="hover:text-white transition-colors"
-                                href={social.href}
+                                href={normalizeHref(social.href)}
+                                target={shouldOpenInNewTab(social.href) ? "_blank" : undefined}
+                                rel={shouldOpenInNewTab(social.href) ? "noopener noreferrer" : undefined}
                                 aria-label={social.ariaLabel}
                             >
                                 <i className={`${social.icon} text-xl`}></i>

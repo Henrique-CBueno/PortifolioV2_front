@@ -1,4 +1,3 @@
-import { project } from "../projectStore";
 import post from "../ACTIONS/POST/POST";
 import type { ChangeImgDTO } from "../ACTIONS/POST/POST";
 import type { ContactEmailDTO } from "../ACTIONS/POST/POST";
@@ -140,8 +139,6 @@ export interface Project {
         socialLinks: SocialLink[];
     };
 }
-
-const typedProject = project as Project;
 
 // const project = {
 //     id: "br",
@@ -480,4 +477,4 @@ export const post_contact_email = async (payload: ContactEmailDTO) => {
     await post.sendContactEmail(payload)
 }
 
-export { typedProject as default };
+export { project as default } from "../projectStore";

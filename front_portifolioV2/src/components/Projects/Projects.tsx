@@ -8,6 +8,7 @@ import {
     setAdminSection,
     syncAdminImageUploadNames,
 } from "../../utils/adminDraft";
+import { normalizeHref, shouldOpenInNewTab } from "../../utils/url";
 
 interface ProjectItem {
     id: string;
@@ -175,7 +176,9 @@ export default function Projects({ admin }: { admin?: boolean }) {
                         />
                     ) : (
                         <a className="text-brand-accent border-b border-brand-accent pb-1 font-medium hover:text-white hover:border-white transition-all"
-                            href={projectsData.githubButtonHref}>{projectsData.githubButtonText}</a>
+                            href={normalizeHref(projectsData.githubButtonHref)}
+                            target={shouldOpenInNewTab(projectsData.githubButtonHref) ? "_blank" : undefined}
+                            rel={shouldOpenInNewTab(projectsData.githubButtonHref) ? "noopener noreferrer" : undefined}>{projectsData.githubButtonText}</a>
                     )}
                 </div>
                 {admin ? (
@@ -306,7 +309,9 @@ export default function Projects({ admin }: { admin?: boolean }) {
                                             />
                                         </p>
                                         <a className="inline-flex items-center gap-2 text-white font-medium"
-                                            href={item.href}>
+                                            href={normalizeHref(item.href)}
+                                            target={shouldOpenInNewTab(item.href) ? "_blank" : undefined}
+                                            rel={shouldOpenInNewTab(item.href) ? "noopener noreferrer" : undefined}>
                                             {caseStudyButtonText} <i className="fa-solid fa-arrow-right text-brand-accent"></i>
                                         </a>
                                     </div>
@@ -360,7 +365,9 @@ export default function Projects({ admin }: { admin?: boolean }) {
                                         <h3 className="text-2xl font-bold text-white mb-3">{item.title}</h3>
                                         <p className="text-gray-400 mb-6">{item.description}</p>
                                         <a className="inline-flex items-center gap-2 text-white font-medium hover:gap-4 transition-all"
-                                            href={item.href}>
+                                            href={normalizeHref(item.href)}
+                                            target={shouldOpenInNewTab(item.href) ? "_blank" : undefined}
+                                            rel={shouldOpenInNewTab(item.href) ? "noopener noreferrer" : undefined}>
                                             {projectsData.caseStudyButtonText} <i className="fa-solid fa-arrow-right text-brand-accent"></i>
                                         </a>
                                     </div>
@@ -390,7 +397,9 @@ export default function Projects({ admin }: { admin?: boolean }) {
                                             <h3 className="text-2xl font-bold text-white mb-3">{item.title}</h3>
                                             <p className="text-gray-400 mb-6">{item.description}</p>
                                             <a className="inline-flex items-center gap-2 text-white font-medium hover:gap-4 transition-all"
-                                                href={item.href}>
+                                                href={normalizeHref(item.href)}
+                                                target={shouldOpenInNewTab(item.href) ? "_blank" : undefined}
+                                                rel={shouldOpenInNewTab(item.href) ? "noopener noreferrer" : undefined}>
                                                 {projectsData.caseStudyButtonText} <i className="fa-solid fa-arrow-right text-brand-accent"></i>
                                             </a>
                                         </div>

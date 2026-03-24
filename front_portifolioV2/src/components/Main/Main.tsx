@@ -3,6 +3,7 @@ import project from "../../types/project";
 import AutoSizeInput from "../ui/AutoSizeInput";
 import DraggableReorderList from "../ui/DraggableReorderList";
 import { setAdminSection } from "../../utils/adminDraft";
+import { normalizeHref, shouldOpenInNewTab } from "../../utils/url";
 
 interface RotatingWordItem {
     id: string;
@@ -278,14 +279,18 @@ export default function Main({ admin }: { admin?: boolean }) {
                                 <>
                                     <a
                                         className="px-8 py-4 bg-brand-accent text-white font-bold rounded-lg hover:shadow-lg hover:shadow-blue-500/30 transition-all flex items-center justify-center gap-2 group"
-                                        href={project.hero.buttons.blueButton.href}
+                                        href={normalizeHref(project.hero.buttons.blueButton.href)}
+                                        target={shouldOpenInNewTab(project.hero.buttons.blueButton.href) ? "_blank" : undefined}
+                                        rel={shouldOpenInNewTab(project.hero.buttons.blueButton.href) ? "noopener noreferrer" : undefined}
                                     >
                                         {project.hero.buttons.blueButton.text}{" "}
                                         <i className="fa-solid fa-chevron-right text-sm group-hover:translate-x-1 transition-transform"></i>
                                     </a>
                                     <a
                                         className="px-8 py-4 border border-white/20 text-white font-bold rounded-lg hover:bg-white/5 transition-all flex items-center justify-center gap-2"
-                                        href={project.hero.buttons.transparentButton.href}
+                                        href={normalizeHref(project.hero.buttons.transparentButton.href)}
+                                        target={shouldOpenInNewTab(project.hero.buttons.transparentButton.href) ? "_blank" : undefined}
+                                        rel={shouldOpenInNewTab(project.hero.buttons.transparentButton.href) ? "noopener noreferrer" : undefined}
                                     >
                                         {project.hero.buttons.transparentButton.text}
                                     </a>
@@ -420,7 +425,7 @@ export default function Main({ admin }: { admin?: boolean }) {
                                 ) : (
                                     project.hero.code.snippet.deployCallSuffix
                                 )}
-                                {"\n    "}
+                                {"\n\n  "}
                                 <span className="text-gray-500">
                                     {admin ? (
                                         <AutoSizeInput

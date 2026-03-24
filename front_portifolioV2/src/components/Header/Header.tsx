@@ -4,6 +4,7 @@ import NameTitle from "./ui/NameTitle";
 import AutoSizeInput from "../ui/AutoSizeInput";
 import DraggableReorderList from "../ui/DraggableReorderList";
 import { patchAdminSection } from "../../utils/adminDraft";
+import { normalizeHref, shouldOpenInNewTab } from "../../utils/url";
 
 export default function Header({ admin }: { admin?: boolean }) {
     const [adminSections, setAdminSections] = useState(() =>
@@ -67,13 +68,20 @@ export default function Header({ admin }: { admin?: boolean }) {
                 <NameTitle />
 
                 <div className="hidden md:flex md:items-center space-x-8 font-medium">
-                    {project.header.sections.map((section) => (
-                        <a className="hover:text-brand-accent transition-colors" 
-                        href={section.href}
-                        key={section.name}>
-                            {section.name}
-                        </a>
-                    ))}
+                    {project.header.sections.map((section) => {
+                        const href = normalizeHref(section.href);
+                        const openInNewTab = shouldOpenInNewTab(section.href);
+
+                        return (
+                            <a className="hover:text-brand-accent transition-colors"
+                                href={href}
+                                target={openInNewTab ? "_blank" : undefined}
+                                rel={openInNewTab ? "noopener noreferrer" : undefined}
+                                key={section.name}>
+                                {section.name}
+                            </a>
+                        );
+                    })}
                 </div>
                 </nav>
             </header>
